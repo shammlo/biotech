@@ -1,0 +1,111 @@
+@font-face {
+  font-family: myriad;
+  src: url(../public/fonts/Myriad\ Pro\ Bold\ SemiExtended.ttf);
+}
+@font-face {
+  font-family: myriadB;
+  src: url(../public/fonts/MyriadPro-Bold.otf);
+}
+
+.testBorder {
+  border: white solid 3px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: myriad;
+}
+.boldfont {
+  font-family: myriadB;
+}
+body {
+  background-color: #ebeaea;
+  color: black;
+}
+::-webkit-scrollbar {
+  background: #ffff;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff9500;
+}
+
+.container {
+  max-width: 1920px;
+  padding-right: 5px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* @media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+} */
+/* @media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+} */
+
+.bd {
+  border: red solid 3px;
+}
+
+.hexagon {
+  position: relative;
+  width: 250px;
+  height: 144.34px;
+  background-color: #ffffff;
+  margin: 72.17px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 176.78px;
+  height: 176.78px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 36.6117px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+}
+
+.hexagon:before {
+  top: -88.3883px;
+}
+
+.hexagon:after {
+  bottom: -88.3883px;
+}
+
+/*cover up extra shadows*/
+.hexagon span {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 250px;
+  height: 144.3376px;
+  z-index: 2;
+  background: inherit;
+}

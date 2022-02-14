@@ -1,0 +1,29 @@
+.nav-main {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  /* border: black solid 4px; */
+  margin-bottom: -70px;
+  padding-top: 20px;
+}
+.nav-logo {
+  width: 10%;
+}
+.nav-logo img {
+  width: 100%;
+}
+.nav-routes {
+  width: 60%;
+  /* border: red solid 2px; */
+  margin: auto 0;
+  padding: 5px;
+}
+.nav-routes ul {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.nav-routes ul li {
+  list-style-type: none;
+}

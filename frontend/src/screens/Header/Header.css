@@ -1,0 +1,28 @@
+.hero-area {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  overflow-x: hidden;
+}
+.hero-logo {
+  width: 50%;
+  padding: 10% 0;
+}
+.hero-logo img {
+  width: 100%;
+}
+.hero-shape {
+  width: 40%;
+  margin-right: -5%;
+}
+.hero-shape img {
+  width: 100%;
+}
+.hero-back-shape {
+  width: 10%;
+  margin-left: -5%;
+}
+.hero-back-shape img {
+  width: 100%;
+}

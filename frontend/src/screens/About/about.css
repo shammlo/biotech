@@ -1,0 +1,35 @@
+.about-section {
+  height: 100vh;
+  width: 100%;
+  margin-top: -10vh;
+  /* margin-right: auto;
+  margin-left: auto; */
+}
+/* @media (min-width: 576px) {
+  .about-section {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .about-section {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .about-section {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .about-section {
+    max-width: 1140px;
+  }
+} */
+.about-title {
+  font-size: 4vmax;
+}
+.about-body {
+  font-size: 1.2vmax;
+  line-height: 200%;
+  width: 40%;
+}
