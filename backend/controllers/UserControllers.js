@@ -166,4 +166,106 @@ const resetPasswordSubmit = async (req, res) => {
   }
 };
 
-export { registerUser, authUser, resetPasswordReq, resetPasswordSubmit };
+// @desc    change password
+// @route   PUT api/users/change-password/:userId
+// @access  private
+const changePassword = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) return res.status(400).send("User not found");
+
+    if (user.id !== req.user.id) {
+      return res.status(400).send("Not Authorized");
+    }
+
+    const { currentPassword, newPassword } = req.body;
+
+    if (user && (await user.matchPassword(currentPassword))) {
+      user.password = newPassword;
+      await user.save();
+      res.send("password changed sucessfully.");
+    } else {
+      res.status(401);
+      res.json({ error: "wrong current password" });
+    }
+  } catch (error) {
+    res.send("An error occured");
+    console.log(error);
+  }
+};
+
+// @desc    change password
+// @route   PUT api/users/:userId
+// @access  private
+const EditUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) return res.status(400).send("User not found");
+
+    if (user.id !== req.user.id) {
+      return res.status(400).send("Not Authorized");
+    }
+
+    const { email, name, roles } = req.body;
+
+    user.roles = [];
+
+    user.email = email;
+    user.name = name;
+    user.roles = roles;
+    await user.save();
+    res.send("user update sucessfully.");
+  } catch (error) {
+    res.send("An error occured");
+    console.log(error);
+  }
+};
+
+// @desc    auth user and get token
+// @route   GET api/users
+// @access  Private admin
+const allUsers = async (req, res) => {
+  try {
+    const users = await User.find({}).select("-password");
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+// @desc    remove a user
+// @route   DELETE api/users/:userId
+// @access  private/admin
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    if (user) {
+      await user.deleteOne();
+      res.json({ message: "user removed", user });
+    } else {
+      res.status(404);
+      throw new Error("user not found");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  registerUser,
+  authUser,
+  resetPasswordReq,
+  resetPasswordSubmit,
+  changePassword,
+  EditUser,
+  allUsers,
+  deleteUser,
+};
