@@ -2,23 +2,46 @@ import mongoose from "mongoose";
 
 const productModel = mongoose.Schema(
   {
-    name: {
+    nameKR: {
       type: String,
       required: true,
     },
-    // logo: {
-    //   type: String,
-    //   required: true,
-    // },
-    // description: {
-    //   type: String,
-    // },
-    // products: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "product",
-    //   },
-    // ],
+    nameAR: {
+      type: String,
+      required: true,
+    },
+    descriptionKR: {
+      type: String,
+    },
+    descriptionAR: {
+      type: String,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    album: [
+      {
+        type: String,
+      },
+    ],
+    price: {
+      type: Number,
+    },
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "brand",
+      },
+    ],
+    state: {
+      type: String,
+      default: "active",
+    },
+    brand: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "brand",
+    },
   },
   {
     timestamps: true,

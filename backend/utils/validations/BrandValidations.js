@@ -1,4 +1,4 @@
-import { isEmail, isEmpity } from "../validationFunctions.js";
+import { isEmpity } from "../validationFunctions.js";
 
 const brandValidation = (data) => {
   let errors = [];
