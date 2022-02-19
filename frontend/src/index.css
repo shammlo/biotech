@@ -1,26 +1,20 @@
 @font-face {
-  font-family: myriad;
-  src: url(../public/fonts/Myriad\ Pro\ Bold\ SemiExtended.ttf);
+  font-family: qaidar;
+  src: url(../public/fonts/font.ttf);
 }
-@font-face {
+/* @font-face {
   font-family: myriadB;
   src: url(../public/fonts/MyriadPro-Bold.otf);
-}
-
-.testBorder {
-  border: white solid 3px;
-}
+} */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: myriad;
+  font-family: qaidar;
 }
-.boldfont {
-  font-family: myriadB;
-}
+
 body {
   background-color: #ebeaea;
   color: black;
@@ -33,7 +27,10 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #ff9500;
 }
-
+::selection {
+  background-color: #ff9500;
+  color: white;
+}
 .container {
   max-width: 1920px;
   padding-right: 5px;

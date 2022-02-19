@@ -8,18 +8,18 @@ import "./Header.css"
 
 function Header() {
     return (
-        <div>
+        <div id='home-section'>
             <Nav />
             <div className='hero-area'>
                 <div className='hero-back-shape'>
-                    <img src={back} />
+                    <img src={back} alt="header" />
 
                 </div>
                 <div className='hero-logo '>
-                    <img src={logo} />
+                    <img src={logo} alt="header" />
                 </div>
-                <div className='hero-shape'>
-                    <img src={shape} />
+                <div className='hero-shape' >
+                    <img src={shape} alt="header" />
 
                 </div>
             </div>

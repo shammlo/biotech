@@ -1,19 +1,19 @@
 import React from 'react'
 import "./about.css"
+import pic from "../../images/about.svg"
 function About() {
     return (
-        <div className='about-section container'>
+        <div dir='rtl' id='about-section' className='about-section container'>
             <div className='text-wrapper'>
                 <h1 className='about-title'>
-                    About Us
+                    دەربارەی ئێمە
                 </h1>
                 <p className='about-body'>
-                    About UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout
-                    About UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsUsAbout UsAbout UsAbout UsAbout UsAbout UsAbout Us
-                    About UsAbout UsAbout UsAbout UsAbout Us
-                    About UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout UsAbout Us
-                    About UsAbout UsAbout UsAbout UsAbout Us
+                    دەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمەدەربارەی ئێمە دەربارەی ئێمە دەربارەی ئێمە
                 </p>
+            </div>
+            <div className='about-pic'>
+                <img src={pic} />
             </div>
         </div>
     )

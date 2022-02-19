@@ -1,6 +1,6 @@
 .brands-section {
   width: 100%;
-  height: auto;
+  height: max-content;
   background-image: url("../../images/brandback.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -8,12 +8,22 @@
 }
 .container-brand {
   margin: 10%;
-
-  height: 100vh;
 }
 .ccontainer {
-  width: 1000px;
+  width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  place-items: center;
+  grid-template-columns: auto auto auto;
+}
+
+@media (max-width: 1200px) {
+  .ccontainer {
+    grid-template-columns: auto auto;
+  }
+}
+@media (max-width: 800px) {
+  .ccontainer {
+    grid-template-columns: auto;
+  }
 }
