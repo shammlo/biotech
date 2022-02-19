@@ -28,14 +28,16 @@ const protect = async (req, res, next) => {
   }
 };
 
-const checkRole = (role) => {
+const checkRole = (roles) => {
   return (req, res, next) => {
     let authorized = false;
 
-    req.user.roles.forEach((r) => {
-      if (r === role) {
-        authorized = true;
-      }
+    roles.forEach((role) => {
+      req.user.roles.forEach((r) => {
+        if (r === role) {
+          authorized = true;
+        }
+      });
     });
 
     if (authorized) {
