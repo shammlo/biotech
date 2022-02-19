@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import path from "path";
 
 import userRoutes from "./routes/UserRoutes.js";
@@ -15,6 +16,18 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+app.use(
+  cors({
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "*",
+    optionsSuccessStatus: 200,
+    credentials: true,
+    exposedHeaders: "*",
+    allowedHeaders: "*",
+    preflightContinue: false,
+  })
+);
 
 app.use(express.json({ limit: "3kb" }));
 
