@@ -1,23 +1,29 @@
 .hero-area {
   width: 100%;
-
+  height: max-content;
   display: flex;
   justify-content: space-evenly;
   overflow-x: hidden;
 }
 .hero-logo {
+  z-index: -1;
   width: 50%;
-  padding: 10% 0;
+  display: flex;
+  align-items: center;
+  height: 90vh;
+  /* margin-top: 4%; */
 }
 .hero-logo img {
   width: 100%;
 }
 .hero-shape {
+  z-index: -1;
   width: 40%;
   margin-right: -5%;
 }
 .hero-shape img {
   width: 100%;
+  z-index: -1;
 }
 .hero-back-shape {
   width: 10%;
@@ -25,4 +31,20 @@
 }
 .hero-back-shape img {
   width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .hero-logo {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    height: 90vh;
+    margin-top: -4%;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-back-shape {
+    display: none;
+  }
 }

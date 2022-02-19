@@ -14,17 +14,17 @@
   z-index: 1;
 }
 
-.ccontainer .card:nth-child(1) .icon {
-  background: #e07768;
+.ccontainer .card .icon {
+  background: #ff9300;
 }
 
-.ccontainer .card:nth-child(2) .icon {
+/* .ccontainer .card:nth-child(2) .icon {
   background: #6eadd4;
 }
 
 .ccontainer .card:nth-child(3) .icon {
   background: #4aada9;
-}
+} */
 
 .ccontainer .card .icon .fa {
   position: absolute;

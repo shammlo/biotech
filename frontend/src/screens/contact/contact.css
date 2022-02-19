@@ -30,7 +30,7 @@
 }
 
 .contact-content {
-  width: 40%;
+  width: 60%;
   height: 40%;
   display: flex;
   flex-direction: column;
@@ -69,4 +69,26 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
+}
+
+.cls-1 {
+  fill: #fff;
+}
+.cls-2 {
+  fill: #ff9300;
+}
+
+@media (max-width: 950px) {
+  .contact-card-parent {
+    width: auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .contact-map {
+    width: 80%;
+    height: 50%;
+    margin-top: 4%;
+  }
 }
