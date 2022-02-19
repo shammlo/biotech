@@ -61,4 +61,35 @@ const createOrUpdateProduct = async (req, res) => {
   }
 };
 
-export { createOrUpdateProduct };
+// @desc    remove a product
+// @route   DELETE api/product/:id
+// @access  private/admin/author
+const deleteProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+      await product.deleteOne();
+      await Brand.updateMany(
+        { _id: product.brand },
+        { $pull: { products: product._id } }
+      );
+
+      product.category.forEach(async (c) => {
+        await Category.updateMany(
+          { _id: c },
+          { $pull: { products: product._id } }
+        );
+      });
+
+      res.json({ message: "product removed", product });
+    } else {
+      res.status(404);
+      throw new Error("product not found");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { createOrUpdateProduct, deleteProduct };
