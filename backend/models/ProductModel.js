@@ -31,7 +31,7 @@ const productModel = mongoose.Schema(
     category: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "brand",
+        ref: "category",
       },
     ],
     state: {

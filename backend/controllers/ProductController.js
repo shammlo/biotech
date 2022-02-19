@@ -92,4 +92,111 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export { createOrUpdateProduct, deleteProduct };
+// @desc    get all product
+// @route   GET api/product
+// @access  public
+const allProducts = async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+// @desc    get all product
+// @route   GET api/product/:brandId/:categoryId
+// @access  public
+const productsByBrandAndCategory = async (req, res) => {
+  try {
+    const products = await Product.find({
+      brand: req.params.brandId,
+      category: req.params.categoryId,
+    });
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+// @desc    get product by id
+// @route   GET api/product/:id
+// @access  public
+const productById = async (req, res) => {
+  try {
+    const products = await Product.findById(req.params.id)
+      .populate("brand")
+      .populate("category");
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+// @desc    get search products
+// @route   GET api/product?keyword=keyword
+// @access  public
+const searchProducts = async (req, res) => {
+  try {
+    const keyword = req.query.keyword
+      ? {
+          $or: [
+            {
+              title: {
+                $regex: req.query.keyword,
+                $options: "i",
+              },
+            },
+            {
+              description: {
+                $regex: req.query.keyword,
+                $options: "i",
+              },
+            },
+          ],
+        }
+      : {};
+
+    const products = await Product.find({ ...keyword });
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+export {
+  createOrUpdateProduct,
+  deleteProduct,
+  allProducts,
+  productsByBrandAndCategory,
+  productById,
+  searchProducts,
+};
