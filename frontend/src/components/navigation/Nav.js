@@ -4,24 +4,24 @@ import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
 function Nav() {
     return (<>
-        <div class="nav">
+        <div className="nav">
             <input type="checkbox" id="nav-check" />
-            <div class="nav-header">
-                <div class="nav-title">
+            <div className="nav-header">
+                <div className="nav-title">
                     <div className='nav-logo'>
 
                     </div>
                 </div>
             </div>
-            <div class="nav-btn">
-                <label for="nav-check">
+            <div className="nav-btn">
+                <label htmlFor="nav-check">
                     <span></span>
                     <span></span>
                     <span></span>
                 </label>
             </div>
 
-            <div class="nav-links">
+            <div className="nav-links">
 
                 <a href="#home-section">سەرەکی</a>
                 <a href="#about-section">دەربارە</a>

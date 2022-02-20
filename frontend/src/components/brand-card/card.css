@@ -15,7 +15,11 @@
 }
 
 .ccontainer .card .icon {
-  background: #ff9300;
+  background: #ff9500c2;
+}
+.ccontainer .card .icon img {
+  height: 100%;
+  width: 100%;
 }
 
 /* .ccontainer .card:nth-child(2) .icon {
