@@ -18,11 +18,9 @@ function Brands() {
                 <div class="ccontainer">
                     {
                         brand.map((e) => (
-                            <Card />
+                            <Card name={e.name} logo={e.logo} desc={e.description} />
                         ))
                     }
-
-
 
                 </div>
             </div>

@@ -64,7 +64,7 @@ function Contact() {
                     </div>
                 </div>
                 <div className='contact-map '>
-                    <iframe title='location' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103859.82458735061!2d45.30761499479892!3d35.5630978961248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40002c0536d143b1%3A0xf791750d4e215dea!2sSulaymaniyah!5e0!3m2!1sen!2siq!4v1644834542461!5m2!1sen!2siq" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe title='location' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103859.82458735061!2d45.30761499479892!3d35.5630978961248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40002c0536d143b1%3A0xf791750d4e215dea!2sSulaymaniyah!5e0!3m2!1sen!2siq!4v1644834542461!5m2!1sen!2siq" allowFullScreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
