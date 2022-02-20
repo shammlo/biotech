@@ -1,5 +1,8 @@
 import express from "express";
-import { createOrUpdateCategory } from "../controllers/CategoryController.js";
+import {
+  allCategory,
+  createOrUpdateCategory,
+} from "../controllers/CategoryController.js";
 import { checkRole, protect } from "../middlewares/AuthMiddlewares.js";
 
 const router = express.Router();
@@ -9,6 +12,7 @@ router
   .post(protect, checkRole(["admin", "author"]), createOrUpdateCategory);
 router
   .route("/")
-  .post(protect, checkRole(["admin", "author"]), createOrUpdateCategory);
+  .post(protect, checkRole(["admin", "author"]), createOrUpdateCategory)
+  .get(allCategory);
 
 export default router;

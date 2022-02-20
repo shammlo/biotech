@@ -27,4 +27,23 @@ const createOrUpdateCategory = async (req, res) => {
   }
 };
 
-export { createOrUpdateCategory };
+// @desc    get all category
+// @route   GET api/category
+// @access  public
+const allCategory = async (req, res) => {
+  try {
+    const category = await Category.find({}).select("-products");
+    res.json(category);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+export { createOrUpdateCategory, allCategory };
