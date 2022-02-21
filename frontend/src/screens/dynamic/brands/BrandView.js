@@ -28,8 +28,8 @@ function BrandView() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5555/api/brand/${id}/${category}`).then((response) => {
-            setbrand(response.data)
+        axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
+            setbrand({ ...brand, products: response.data })
 
         });
     }, [category]);
@@ -37,15 +37,19 @@ function BrandView() {
         <>
             <Nav />
             <div className='category-brand '>
-                <div class="multi-button">
-                    {buttons === null || undefined || 0 ? null :
+                <div className="multi-button">
+                    {buttons &&
                         buttons.map((e) => (
-                            <Link to={`/brands/${e._id}`}>
-                                <button class="btn btn-cut">
-                                    <span class="a">{e.nameAR}</span>
-                                    <span class="b"><i class="fas fa-cut"></i></span>
-                                </button>
-                            </Link>
+
+                            <button className="btn btn-cut"
+                                onClick={() =>
+                                    setcategory(e._id)
+
+                                }>
+                                <span className="a">{e.nameAR}</span>
+                                <span className="b"><i className="fas fa-cut"></i></span>
+                            </button>
+
                         ))
 
                     }

@@ -3,20 +3,20 @@ import "./card.css"
 function Card(props) {
     return (
 
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <div class="icon" style={{ backgroundImage: `url(${props.logo})` }}>
+        <div className="card">
+            <div className="face face1">
+                <div className="content">
+                    <div className="icon" style={{ backgroundImage: `url(${props.logo})` }}>
                         <img src={`http://localhost:5555${props.logo}`} />
 
                     </div>
                 </div>
             </div>
-            <div class="face face2">
-                <div class="content">
-                    <h3>
-                        <a href="https://www.linkedin.com/in/adamdipinto/" target="_blank">{props.name}</a>
-                    </h3>
+            <div className="face face2">
+                <div className="content">
+
+                    <a href="https://www.linkedin.com/in/adamdipinto/" target="_blank">  <h3>{props.name}  </h3></a>
+
                     <p>{props.desc}</p>
                 </div>
             </div>

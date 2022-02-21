@@ -48,12 +48,12 @@ function Login() {
 
             </div>
             <div className='login-input'>
-                <div class="login bd">
-                    <div class="form">
+                <div className="login bd">
+                    <div className="form">
                         <h2>{errors}</h2>
                         <input type="text" onChange={e => setusername(e.target.value)} placeholder="Username" />
                         <input type="password" onChange={e => setpassword(e.target.value)} placeholder="Password" />
-                        <input onClick={login} value="Sign In" class="submit" />
+                        <input onClick={login} value="Sign In" className="submit" />
                     </div>
                 </div>
             </div>

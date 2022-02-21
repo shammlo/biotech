@@ -16,10 +16,10 @@ function Brands() {
     return (
         <div id='brand-section' className='brands-section'>
             <div className='container-brand '>
-                <div class="ccontainer">
+                <div className="ccontainer">
                     {
                         brand.map((e) => (
-                            <Link to={`/brands/${e._id}`}>
+                            <Link key={e._id} to={`/brands/${e._id}`}>
                                 <Card
                                     name={e.name}
                                     logo={e.logo}
