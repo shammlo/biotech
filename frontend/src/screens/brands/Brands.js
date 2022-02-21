@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import "./brands.css"
 import Card from "../../components/brand-card/Card"
+import { Link } from "react-router-dom"
 function Brands() {
     const [brand, setbrand] = useState([]);
 
@@ -18,8 +19,15 @@ function Brands() {
                 <div class="ccontainer">
                     {
                         brand.map((e) => (
-                            <Card name={e.name} logo={e.logo} desc={e.description} />
+                            <Link to={`/brands/${e._id}`}>
+                                <Card
+                                    name={e.name}
+                                    logo={e.logo}
+                                    desc={e.description}
+                                />
+                            </Link>
                         ))
+
                     }
 
                 </div>

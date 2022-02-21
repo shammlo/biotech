@@ -64,11 +64,11 @@
 .card-icon {
   zoom: 150%;
   border: white solid 2px;
-  border-radius: 20px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 7px;
 }
 
 .cls-1 {
