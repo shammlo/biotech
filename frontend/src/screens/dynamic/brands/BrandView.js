@@ -10,28 +10,62 @@ function BrandView() {
     const params = useParams();
     const id = params.id;
     const [brand, setbrand] = useState([]);
-    const [category, setcategory] = useState([]);
+    const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
 
-    useEffect(() => {
-        axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
-            setbrand(response.data)
 
-        });
+    useEffect(() => {
+
+        const run = async () => {
+            try {
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
+                setbrand(data)
+                console.log(brand)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        run();
+
+        // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
+        //     setbrand(response.data)
+        // });
     }, []);
     useEffect(() => {
-        axios.get(`http://localhost:5555/api/category`).then((response) => {
-            setbuttons(response.data)
+        const run = async () => {
+            try {
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category`);
+                setbuttons(data)
+            } catch (error) {
+                console.log(error)
 
-        });
+            }
+        }
+        run();
+        // axios.get(`http://localhost:5555/api/category`).then((response) => {
+        //     setbuttons(response.data)
+        // });
     }, []);
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
-            setbrand({ ...brand, products: response.data })
 
-        });
+        const run = async () => {
+            try {
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`);
+                setbrand({ ...brand, products: data })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        if (category !== '') {
+            run();
+
+        }
+        console.log(category)
+        // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
+        //     setbrand({ ...brand, products: response.data })
+        // });
     }, [category]);
     return (
         <>
@@ -57,12 +91,12 @@ function BrandView() {
                 </div>
             </div>
             <div className='category-cards'>
-                {brand && brand.products &&
+                {brand && brand.products && brand.products.length !== 0 &&
                     brand.products.map((e) => (
-                        <Link to={`/brands/${e._id}`}>
-                            <CategoryCard />
+                        // <Link to={`/brands/${e._id}`}>
+                        <CategoryCard cart={e} />
 
-                        </Link>
+                        // </Link>
                     ))
 
                 }

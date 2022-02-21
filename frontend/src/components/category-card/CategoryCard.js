@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./categoryCard.css"
-function CategoryCard() {
+import { CardContext } from "../../context/CardContext";
+
+function CategoryCard(props) {
+    const { cart, setCart } = useContext(CardContext)
+
     return (
         <>
 
@@ -14,6 +18,7 @@ function CategoryCard() {
                                 <h1>Chair</h1>
                                 <p>£250</p>
                             </div>
+                            <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} />
                             {/* <div className="buy"><i className="material-icons">add_shopping_cart</i></div> */}
                         </div>
                         <div className="right">

@@ -8,7 +8,7 @@ function Brands() {
     const [brand, setbrand] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5555/api/brand/").then((response) => {
+        axios.get(`${process.env.REACT_APP_MAIN_URL}brand/`).then((response) => {
             setbrand(response.data)
 
         });
