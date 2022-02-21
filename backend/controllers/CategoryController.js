@@ -46,4 +46,44 @@ const allCategory = async (req, res) => {
   }
 };
 
-export { createOrUpdateCategory, allCategory };
+// @desc    get category with products by id
+// @route   GET api/category/:id
+// @access  public
+const categoryById = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id).populate(
+      "products"
+    );
+    res.json(category);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+// @desc    remove a category
+// @route   DELETE api/category/:id
+// @access  private/admin/author
+const deleteCategory = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (category) {
+      await category.deleteOne();
+      res.json({ message: "category removed", category });
+    } else {
+      res.status(404);
+      throw new Error("category not found");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { createOrUpdateCategory, allCategory, categoryById, deleteCategory };
