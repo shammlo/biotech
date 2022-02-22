@@ -2,7 +2,12 @@ import React from 'react'
 import "./nav.css"
 import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 function Nav() {
+
+    const { t } = useTranslation();
+
     return (<>
         <div className="nav">
             <input type="checkbox" id="nav-check" />
@@ -23,7 +28,7 @@ function Nav() {
 
             <div className="nav-links">
 
-                <a href="#home-section">سەرەکی</a>
+                <a href="#home-section"> {t("home")}</a>
                 <a href="#about-section">دەربارە</a>
                 <a href="#brand-section">براندەکان</a>
                 <a href="#contact-section">پەیوەندی</a>
@@ -38,8 +43,8 @@ function Nav() {
             </div>
             <div className='nav-routes'>
                 <ul>
-                    <li><a href="#home-section">سەرەکی</a></li>
-                    <li><a href="#about-section">دەربارە</a></li>
+                    <li><a href="#home-section">{t("home")}</a></li>
+                    <li><a href="#about-section">{t("malawa")}</a></li>
                     <li><a href="#brand-section">براندەکان</a></li>
                     <li><a href="#contact-section">پەیوەندی</a></li>
                 </ul>

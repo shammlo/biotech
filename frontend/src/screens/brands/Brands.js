@@ -3,11 +3,12 @@ import axios from 'axios'
 
 import "./brands.css"
 import Card from "../../components/brand-card/Card"
+import { Link } from "react-router-dom"
 function Brands() {
     const [brand, setbrand] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5555/api/brand/").then((response) => {
+        axios.get(`${process.env.REACT_APP_MAIN_URL}brand/`).then((response) => {
             setbrand(response.data)
 
         });
@@ -15,11 +16,18 @@ function Brands() {
     return (
         <div id='brand-section' className='brands-section'>
             <div className='container-brand '>
-                <div class="ccontainer">
+                <div className="ccontainer">
                     {
                         brand.map((e) => (
-                            <Card name={e.name} logo={e.logo} desc={e.description} />
+                            <Link key={e._id} to={`/brands/${e._id}`}>
+                                <Card
+                                    name={e.name}
+                                    logo={e.logo}
+                                    desc={e.description}
+                                />
+                            </Link>
                         ))
+
                     }
 
                 </div>
