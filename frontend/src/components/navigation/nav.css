@@ -50,6 +50,14 @@
 
 .nav-utils {
   width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.cart-logo {
+  margin: auto;
+  zoom: 140%;
+
+  padding: 8px 15px;
 }
 .nav-routes ul li a {
   text-decoration: none;

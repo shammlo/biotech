@@ -6,6 +6,19 @@ import axios from 'axios';
 import CategoryCard from '../../../components/category-card/CategoryCard';
 import Nav from '../../../components/navigation/Nav';
 import "./brandview.css"
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
+
+
+// import required modules
+import { FreeMode, Navigation } from "swiper";
+
 function BrandView() {
     const params = useParams();
     const id = params.id;
@@ -72,7 +85,32 @@ function BrandView() {
             <Nav />
             <div className='category-brand '>
                 <div className="multi-button">
-                    {buttons &&
+                    <Swiper
+                        slidesPerView={8}
+                        spaceBetween={30}
+                        navigation={true}
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[FreeMode]}
+                        className="mySwiper" >
+                        {buttons &&
+                            buttons.map((e) => (
+
+                                <SwiperSlide className="btn btn-cut"
+                                    onClick={() =>
+                                        setcategory(e._id)
+
+                                    }>
+                                    <span className="a">{e.nameAR}</span>
+                                    <span className="b"><i className="fas fa-cut"></i></span>
+                                </SwiperSlide>
+
+                            ))}
+
+                    </Swiper>
+                    {/* {buttons &&
                         buttons.map((e) => (
 
                             <button className="btn btn-cut"
@@ -86,9 +124,10 @@ function BrandView() {
 
                         ))
 
-                    }
+                    } */}
 
                 </div>
+
             </div>
             <div className='category-cards'>
                 {brand && brand.products && brand.products.length !== 0 &&

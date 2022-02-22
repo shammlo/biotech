@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./nav.css"
 import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { GrCart } from "react-icons/gr";
+import OrderCart from '../OrderCart/OrderCart';
 function Nav() {
+
+    const [cartShow, setcartShow] = useState(false);
+    const toggle = () => {
+        setcartShow(false)
+    }
 
     const { t } = useTranslation();
 
@@ -60,7 +67,13 @@ function Nav() {
 
                     </div>
                 </div>
+
+                <div className='cart-logo' onClick={() => setcartShow(true)}>
+                    <GrCart />
+                </div>
             </div>
+            {cartShow ? <OrderCart toggle={toggle} /> : null}
+
         </nav>
     </>
 
