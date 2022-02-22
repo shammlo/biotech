@@ -31,6 +31,7 @@ const createOrUpdateCategory = async (req, res) => {
 // @route   GET api/category
 // @access  public
 const allCategory = async (req, res) => {
+  let error = [];
   try {
     const category = await Category.find({}).select("-products");
     res.json(category);
@@ -50,6 +51,7 @@ const allCategory = async (req, res) => {
 // @route   GET api/category/:id
 // @access  public
 const categoryById = async (req, res) => {
+  let error = [];
   try {
     const category = await Category.findById(req.params.id).populate(
       "products"

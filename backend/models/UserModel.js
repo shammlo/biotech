@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     roles: [{ type: String }],
+    profile: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "profile",
+    },
   },
   {
     timestamps: true,
