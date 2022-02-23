@@ -3,6 +3,7 @@ import "./nav.css"
 import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
 import i18next from "i18next";
+
 import { useTranslation } from "react-i18next";
 import { GrCart } from "react-icons/gr";
 import OrderCart from '../OrderCart/OrderCart';
@@ -51,9 +52,9 @@ function Nav() {
             <div className='nav-routes'>
                 <ul>
                     <li><a href="#home-section">{t("home")}</a></li>
-                    <li><a href="#about-section">{t("malawa")}</a></li>
-                    <li><a href="#brand-section">براندەکان</a></li>
-                    <li><a href="#contact-section">پەیوەندی</a></li>
+                    <li><a href="#about-section">{t("about_us")}</a></li>
+                    <li><a href="#brand-section">{t("brands")}</a></li>
+                    <li><a href="#contact-section">{t("call_us")}</a></li>
                 </ul>
             </div>
 
@@ -62,8 +63,14 @@ function Nav() {
                 <div className="dropdown" >
                     <button className="dropbtn dropsize"><GrLanguage /></button>
                     <div className="dropdown-content">
-                        <a href="/ku">کوردی</a>
-                        <a href="/ar">عربی</a>
+                        <a href="#!" onClick={() => {
+
+                            i18next.changeLanguage("ku");
+                        }}>کوردی</a>
+                        <a href="#!" onClick={() => {
+
+                            i18next.changeLanguage("ar");
+                        }}>عربی</a>
 
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 .wrapper {
   width: 300px;
-  height: 500px;
-  background: white;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.395);
   margin: 0 4px;
   position: relative;
   overflow: hidden;
@@ -21,15 +21,19 @@
 .wrapper .containera .top {
   height: 80%;
   width: 100%;
-  background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
-    no-repeat center center;
+  /* background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
+    no-repeat center center; */
+  background: no-repeat center center;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
   background-size: 100%;
 }
+/* .wrapper .containera .top img {
+  : no-repeat center center;
+} */
 .wrapper .containera .bottom {
-  width: 200%;
+  width: 100%;
   height: 20%;
   transition: transform 0.5s;
 }
@@ -52,12 +56,12 @@
   float: left;
 }
 .wrapper .containera .bottom .left .details {
-  padding: 5px;
   float: right;
-  width: calc(70% - 40px);
+  width: calc(70% - 10px);
 }
 .wrapper .containera .bottom .left .buy {
-  float: right;
+  float: left;
+  width: 100%;
   width: calc(30% - 2px);
   height: 100%;
   background: #f1f1f1;
@@ -71,14 +75,14 @@
   transition: transform 0.5s;
 }
 .wrapper .containera .bottom .left .buy:hover {
-  background: #a6cdde;
+  background: #ff9500;
 }
 .wrapper .containera .bottom .left .buy:hover i {
   transform: translateY(5px);
   color: #00394b;
 }
 .wrapper .containera .bottom .right {
-  width: 50%;
+  width: 80%;
   background: #a6cdde;
   color: white;
   float: right;

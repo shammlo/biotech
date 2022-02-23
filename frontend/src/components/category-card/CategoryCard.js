@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import "./categoryCard.css"
 import { CardContext } from "../../context/CardContext";
+import { GrCart } from "react-icons/gr";
 
 function CategoryCard(props) {
     const { cart, setCart } = useContext(CardContext)
+
+    console.log(props.cart)
 
     return (
         <>
@@ -11,15 +14,18 @@ function CategoryCard(props) {
 
             <div className="wrapper ">
                 <div className="containera">
-                    <div className="top"></div>
+                    <div className="top" style={{ backgroundImage: `url(http://localhost:5555${props.cart.image})` }}>
+
+
+                    </div>
                     <div className="bottom">
                         <div className="left">
                             <div className="details">
-                                <h1>Chair</h1>
+                                <h1 style={{ fontSize: "20px" }}>{props.cart.nameKR}</h1>
                                 <p>£250</p>
                             </div>
-                            <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} />
-                            {/* <div className="buy"><i className="material-icons">add_shopping_cart</i></div> */}
+                            {/* <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} /> */}
+                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
                         </div>
                         <div className="right">
                             {/* <div className="done"><i className="material-icons">done</i></div> */}

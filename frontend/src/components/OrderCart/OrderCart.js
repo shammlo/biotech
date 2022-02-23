@@ -26,8 +26,8 @@ function OrderCart(props) {
 
                 <ul class="shopping-cart-items">
                     {cart.map(e => {
-                        return <li class="clearfix">
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+                        return <li class="clearfix ">
+                            <img src={`http://localhost:5555${e.image}`} alt="item1" />
                             <span class="item-name">{currentLanguageCode === "ar" ? e.nameAR : e.nameKU}</span>
                             {/* <span class="item-price">$849.99</span> */}
                             <span class="item-quantity">Quantity: 01</span>

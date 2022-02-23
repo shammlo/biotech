@@ -75,7 +75,7 @@ function BrandView() {
             run();
 
         }
-        console.log(category)
+        // console.log(category)
         // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
         //     setbrand({ ...brand, products: response.data })
         // });
@@ -87,7 +87,7 @@ function BrandView() {
                 <div className="multi-button">
                     <Swiper
                         slidesPerView={8}
-                        spaceBetween={30}
+                        spaceBetween={20}
                         navigation={true}
                         freeMode={true}
                         pagination={{

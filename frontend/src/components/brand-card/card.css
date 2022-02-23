@@ -15,7 +15,7 @@
 }
 
 .ccontainer .card .icon {
-  background: #ff9500c2;
+  background: #ffffffdb;
 }
 .ccontainer .card .icon img {
   height: 100%;
@@ -58,7 +58,7 @@ i {
 
 .ccontainer .card .face.face1 {
   position: relative;
-  background: #333;
+  background: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@ i {
 }
 
 .ccontainer .card:hover .face.face1 {
-  background: #ff0057;
+  background: #d1d1d1;
   transform: translateY(0px);
 }
 
@@ -86,13 +86,13 @@ i {
 
 .ccontainer .card .face.face2 {
   position: relative;
-  background: #fff;
+  background: #ff9500;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.436);
   transform: translateY(-100px);
 }
 
@@ -104,7 +104,7 @@ i {
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #414141;
+  color: #ffffff;
 }
 
 .ccontainer .card .face.face2 .content h3 {
@@ -113,10 +113,10 @@ i {
   color: #fff;
   font-size: 24px;
   text-align: center;
-  color: #414141;
+  color: #ffffff;
 }
 
 .ccontainer a {
   text-decoration: none;
-  color: #414141;
+  color: #ffffff;
 }
