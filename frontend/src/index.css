@@ -31,6 +31,9 @@ body {
   background-color: #ff9500;
   color: white;
 }
+.link {
+  color: #000;
+}
 .container {
   max-width: 1920px;
   padding-right: 5px;

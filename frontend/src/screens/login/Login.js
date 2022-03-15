@@ -3,23 +3,27 @@ import "./login.css"
 import logo from "../../images/logo.png"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 
 function Login() {
+    const { t } = useTranslation();
+
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
-    const [errors, seterrors] = useState('Login');
+    const [errors, seterrors] = useState(t("Login"));
     const [LoginStatus, setLoginStatus] = useState(false);
     const navigate = useNavigate()
 
+    // console.log(i18next.language)
     const login = async () => {
-
         try {
             const { data } = await axios.post("http://localhost:5555/api/users/login", {
                 email: username,
                 password: password
             })
-            console.log(data)
+            // console.log(data)
             if (!data.token) {
                 setLoginStatus(false)
                 alert("wrong")
@@ -28,18 +32,32 @@ function Login() {
                 localStorage.setItem("token", JSON.stringify(data))
                 setLoginStatus(true);
                 navigate(-1);
-
-
             }
         } catch (error) {
-            console.log(error.response.data)
-            seterrors(error.response.data[0].messageKR)
-        }
-        // .then((response) => {
-        //   
+            // console.log(error.response.data)
+            i18next.language === 'ku' ?
+                seterrors(error.response.data[0].messageKR)
+                :
+                seterrors(error.response.data[0].messageAR)
 
-        // })
+        }
     };
+    const logout = () => {
+        localStorage.removeItem("token")
+        window.location.reload();
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem("token") !== null || undefined || 0) {
+            setLoginStatus(true)
+
+        }
+
+
+    }, [])
+
+
+
     return (
         <div className='login-container'>
             <div className='login-logo '>
@@ -47,14 +65,25 @@ function Login() {
                 <img src={logo} alt="header" />
 
             </div>
-            <div className='login-input'>
+            <div className='login-input' dir='rtl'>
+
                 <div className="login bd">
-                    <div className="form">
-                        <h2>{errors}</h2>
-                        <input type="text" onChange={e => setusername(e.target.value)} placeholder="Username" />
-                        <input type="password" onChange={e => setpassword(e.target.value)} placeholder="Password" />
-                        <input onClick={login} value="Sign In" className="submit" />
-                    </div>
+                    <form>
+                        <div className="form">
+                            {LoginStatus ? <> <h2>{t("logedin")}</h2>
+                                <input onClick={logout} defaultValue={t("logout")} className="submit" />
+                                <input onClick={() => navigate(-1)} defaultValue={t("backhome")} className="submit" />
+                            </>
+                                :
+                                <>
+                                    <h2>{errors}</h2>
+                                    <input type="text" onChange={e => setusername(e.target.value)} placeholder={t("user")} />
+                                    <input type="password" onChange={e => setpassword(e.target.value)} placeholder={t("password")} />
+                                    <input onClick={login} defaultValue={t("LoginB")} className="submit" />
+                                </>
+                            }
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

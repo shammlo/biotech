@@ -3,9 +3,10 @@ import "./nav.css"
 import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
 import i18next from "i18next";
-
+import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { GrCart } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
 import OrderCart from '../OrderCart/OrderCart';
 function Nav() {
 
@@ -35,12 +36,10 @@ function Nav() {
             </div>
 
             <div className="nav-links">
-
                 <a href="#home-section"> {t("home")}</a>
                 <a href="#about-section">دەربارە</a>
                 <a href="#brand-section">براندەکان</a>
                 <a href="#contact-section">پەیوەندی</a>
-
             </div>
         </div>
         <nav className='nav-main container ' dir='rtl'>
@@ -77,6 +76,11 @@ function Nav() {
 
                 <div className='cart-logo' onClick={() => setcartShow(true)}>
                     <GrCart />
+                </div>
+                <div className='cart-logo'>
+                    <Link to="/login" className='link'>
+                        <CgProfile />
+                    </Link>
                 </div>
             </div>
             {cartShow ? <OrderCart toggle={toggle} /> : null}
