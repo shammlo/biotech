@@ -43,6 +43,7 @@ const createOrUpdateProduct = async (req, res) => {
     data.state = state;
 
     const brandData = await Brand.findOne({ _id: brand });
+    console.log(data._id);
     brandData.products.push(data._id);
     await brandData.save();
 

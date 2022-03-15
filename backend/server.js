@@ -9,6 +9,7 @@ import brandRoutes from "./routes/BrandRoutes.js";
 import productRoutes from "./routes/ProductRoutes.js";
 import categoryRoutes from "./routes/CategoryRoutes.js";
 import profileRoutes from "./routes/ProfileRoutes.js";
+import cartRoutes from "./routes/CartRoutes.js";
 
 import connectDB from "./config/db.js";
 
@@ -38,6 +39,7 @@ app.use("/api/brand", brandRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/cart", cartRoutes);
 
 //make uploads static
 const __dirname = path.resolve();

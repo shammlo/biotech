@@ -9,7 +9,7 @@ const createOrUpdateCategory = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { nameAR, nameKR } = req.body;
+  const { nameAR, nameKR, img } = req.body;
 
   try {
     const data =
@@ -17,6 +17,7 @@ const createOrUpdateCategory = async (req, res) => {
 
     data.nameAR = nameAR;
     data.nameKR = nameKR;
+    data.img = img;
 
     const result = await data.save();
     res.json(result);
