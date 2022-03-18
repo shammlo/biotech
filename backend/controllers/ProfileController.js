@@ -1,5 +1,5 @@
 import Profile from "../models/ProfileModel.js";
-import User from "../models/userModel.js";
+import User from "../models/UserModel.js";
 
 // @desc Create Or update a profile
 // @route Post api/profile/:id
