@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-import generateToken from "../utils/GenerateToken.js";
+import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
 import {
   loginValidator,
