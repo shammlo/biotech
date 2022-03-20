@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import "./categoryCard.css"
 import { CardContext } from "../../context/CardContext";
 import { GrCart } from "react-icons/gr";
-
+import { AiOutlineInfoCircle } from "react-icons/ai";
 function CategoryCard(props) {
     const { cart, setCart } = useContext(CardContext)
 
-    console.log(props.cart)
+    // console.log(props.cart)
 
     return (
         <>
@@ -14,7 +14,7 @@ function CategoryCard(props) {
 
             <div className="wrapper ">
                 <div className="containera">
-                    <div className="top" style={{ backgroundImage: `url(http://localhost:5555${props.cart.image})` }}>
+                    <div className="top" style={{ backgroundImage: `url(http://api.biotech.cf${props.cart.image})` }}>
 
 
                     </div>
@@ -22,10 +22,10 @@ function CategoryCard(props) {
                         <div className="left">
                             <div className="details">
                                 <h1 style={{ fontSize: "20px" }}>{props.cart.nameKR}</h1>
-                                <p>£250</p>
+                                <p>${props.cart.price}</p>
                             </div>
                             {/* <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} /> */}
-                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
+                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); alert("done") }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
                         </div>
                         <div className="right">
                             {/* <div className="done"><i className="material-icons">done</i></div> */}
@@ -38,10 +38,10 @@ function CategoryCard(props) {
                     </div>
                 </div>
                 <div className="inside">
-                    {/* <div className="icon"><i className="material-icons">info_outline</i></div> */}
+                    <div className="icon" ><AiOutlineInfoCircle style={{ zoom: "200%" }} /></div>
                     <div className="contents">
                         <p>
-                            description
+                            {props.cart.descriptionKR}
                         </p>
                     </div>
                 </div>

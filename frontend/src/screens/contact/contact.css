@@ -91,4 +91,7 @@
     height: 50%;
     margin-top: 4%;
   }
+  .card-number {
+    font-size: 3vmin;
+  }
 }

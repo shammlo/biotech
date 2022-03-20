@@ -3,7 +3,7 @@
   width: 60%;
   height: 60vh;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -53,10 +53,10 @@
 .shopping-cart .shopping-cart-items .item-quantity {
   color: #abb0be;
 }
-
+/* 
 .shopping-cart:after {
   bottom: 100%;
-  left: 89%;
+  left: 20%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -66,7 +66,7 @@
   border-bottom-color: white;
   border-width: 8px;
   margin-left: -8px;
-}
+} */
 
 .cart-icon {
   color: #515783;
@@ -94,4 +94,8 @@
   content: "";
   display: table;
   clear: both;
+}
+.tebini {
+  width: 100%;
+  border: #d57c00 solid 3px;
 }

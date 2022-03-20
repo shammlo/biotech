@@ -10,6 +10,14 @@ function OrderCart(props) {
 
 
 
+    // console.table(cart)
+
+    const handleRemoveField = (e, index) => {
+        e.preventDefault();
+
+        setCart((prev) => prev.filter((item) => item !== prev[index]));
+        // localStorage.setItem("cart", cart)
+    }
 
 
     return (
@@ -25,12 +33,12 @@ function OrderCart(props) {
 
 
                 <ul class="shopping-cart-items">
-                    {cart.map(e => {
+                    {cart.map((e, index) => {
                         return <li class="clearfix ">
-                            <img src={`http://localhost:5555${e.image}`} alt="item1" />
-                            <span class="item-name">{currentLanguageCode === "ar" ? e.nameAR : e.nameKU}</span>
+                            <img src={`http://api.biotech.cf${e.image}`} alt="item1" onClick={(e) => handleRemoveField(e, index)} />
+                            <span class="item-name">{currentLanguageCode === "ar" ? e.nameAR : e.nameKR}</span>
                             {/* <span class="item-price">$849.99</span> */}
-                            <span class="item-quantity">Quantity: 01</span>
+                            <span class="item-quantity">Quantity: <input type="number" /></span>
                         </li>
                     })}
                     {/* <li class="clearfix">
@@ -54,6 +62,9 @@ function OrderCart(props) {
                         <span class="item-quantity">Quantity: 01</span>
                     </li> */}
                 </ul>
+                <span class="item-quantity">Tebini</span>
+
+                <textarea className='tebini' />
 
                 <a href="#" class="button" onClick={props.toggle}>Checkout</a>
             </div>

@@ -7,7 +7,7 @@ function Card(props) {
             <div className="face face1">
                 <div className="content">
                     <div className="icon" style={{ backgroundImage: `url(${props.logo})` }}>
-                        <img src={`http://localhost:5555${props.logo}`} />
+                        <img src={`http://api.biotech.cf${props.logo}`} />
 
                     </div>
                 </div>
