@@ -21,7 +21,7 @@ function OrderCart(props) {
 
 
     return (
-        <div className='ordercart-container'>
+        <div className='ordercart-container' dir='rtl'>
             <div class="shopping-cart">
                 <div class="shopping-cart-header">
                     <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">345</span>
