@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Navigation } from "swiper";
+import Enav from '../../../components/navigation/Enav';
 
 function BrandView() {
     const params = useParams();
@@ -82,7 +83,7 @@ function BrandView() {
     }, [category]);
     return (
         <>
-            <Nav />
+            <Enav />
             <div className='category-brand '>
                 <div className="multi-button">
                     <Swiper
@@ -98,13 +99,13 @@ function BrandView() {
                         {buttons &&
                             buttons.map((e) => (
 
-                                <SwiperSlide className="btn btn-cut"
+                                <SwiperSlide style={{ width: "fit-content" }} className="btn btn-cut"
                                     onClick={() =>
                                         setcategory(e._id)
 
                                     }>
                                     <span className="a">{e.nameAR}</span>
-                                    <span className="b"><i className="fas fa-cut"></i></span>
+                                    {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
 
                             ))}

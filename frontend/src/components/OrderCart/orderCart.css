@@ -1,6 +1,6 @@
 .ordercart-container {
   z-index: 9999999;
-  width: 60%;
+  width: 90%;
   height: 60vh;
   position: absolute;
   top: 40%;
@@ -27,7 +27,7 @@
 .shopping-cart .shopping-cart-items {
   padding-top: 20px;
 
-  height: 40vh;
+  height: 50vh;
   overflow-x: scroll;
 }
 .shopping-cart .shopping-cart-items li {
@@ -43,12 +43,13 @@
 }
 .shopping-cart .shopping-cart-items .item-name {
   display: block;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   font-size: 16px;
 }
 .shopping-cart .shopping-cart-items .item-price {
-  color: #ff9500;
-  margin-right: 8px;
+  display: block;
+
+  font-size: 16px;
 }
 .shopping-cart .shopping-cart-items .item-quantity {
   color: #abb0be;
@@ -89,7 +90,12 @@
 .button:hover {
   background: #d57c00;
 }
-
+.clearfix {
+  border: solid #d57c00 1px;
+  border-radius: 20px;
+  padding: 0 15px 0 0;
+  overflow: hidden;
+}
 .clearfix:after {
   content: "";
   display: table;
