@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./orderCart.css"
 import { CardContext } from "../../context/CardContext";
 import cookies from "js-cookie";
@@ -13,44 +13,70 @@ function OrderSure(props) {
     const token = JSON.parse(user).token;
 
 
+    const [data, setData] = useState({
 
+        products: [{
+            product: "",
+            quantity: "",
+        }
+
+        ]
+    })
     // console.table(cart)
-
-    const handleRemoveField = (e, index) => {
-        e.preventDefault();
-
-        setCart((prev) => prev.filter((item) => item !== prev[index]));
-        // localStorage.setItem("cart", cart)
-    }
-    // console.log(cart)
 
     const order = cart;
 
-    let prod = [];
+    const arr = () => {
+        order.forEach((item, index) => {
+            setData([{ ...data, products: [{ product: item._id, quantity: item.quantity }] }])
+            // quant = [...quant, item.quantity]
+        })
+    }
+
+    // console.log(cart)
+
+
+
+
+    let all = [];
     let quant = [];
     order.forEach((item, index) => {
-        prod = [...prod, item._id]
-        quant = [...quant, item.quantity]
-
+        all = [{
+            product: [...all, item._id], product: [...all, item.quantity]
+        }]
+        // quant = [...quant, item.quantity]
     })
 
-    // // console.log(prod, quant)
+    console.log(all)
     // let formdata = new FormData()
     // formdata.append('product', prod);
     // formdata.append('quantity', quant);
 
+    // var result = prod.map(function (value, index) {
+    //     return [prod[index], quant[index]];
+    // });
+
+    // console.log(result.unshift(['Population', 'Total Number Per Unit']))
 
 
-    // console.log(formdata)
+    // console.log(result)
+
+
+
+
+    // let final = []
+
+    // result.forEach((item, index) => {
+    //     return final[{ product: item, quantity: item[1] }]
+    // })
+    // console.log(final)
 
 
 
     const add = async () => {
         // const token = 
         await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`, {
-            products: [
 
-            ]
 
         }, {
             headers: {
@@ -101,7 +127,7 @@ function OrderSure(props) {
                 <textarea className='tebini' /> */}
                 <p>{props.note} : {t("note")}</p>
                 <a href="#" className="button" onClick={props.toggle} style={{ background: "grey" }}>{t("Close")}</a>
-                <a href="#" className="button" onClick={props.toggle}>{t("checkout")}</a>
+                <a href="#" className="button" onClick={arr}>{t("checkout")}</a>
             </div>
 
         </div>
