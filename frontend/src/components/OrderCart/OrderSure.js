@@ -14,40 +14,34 @@ function OrderSure(props) {
 
 
     const [data, setData] = useState({
-
-        products: [{
-            product: "",
-            quantity: "",
-        }
-
-        ]
+        products: []
     })
     // console.table(cart)
 
     const order = cart;
 
     const arr = () => {
+        const eee = [];
         order.forEach((item, index) => {
-            setData([{ ...data, products: [{ product: item._id, quantity: item.quantity }] }])
+            eee.push({ product: item._id, quantity: item.quantity });
             // quant = [...quant, item.quantity]
         })
+        setData({ ...data, products: eee })
     }
 
-    // console.log(cart)
+    // console.log(data)
 
 
 
 
-    let all = [];
+    let prod = [];
     let quant = [];
     order.forEach((item, index) => {
-        all = [{
-            product: [...all, item._id], product: [...all, item.quantity]
-        }]
-        // quant = [...quant, item.quantity]
+        prod = [...prod, item._id]
+        quant = [...quant, item.quantity]
     })
+    // console.log(prod, quant)
 
-    console.log(all)
     // let formdata = new FormData()
     // formdata.append('product', prod);
     // formdata.append('quantity', quant);
@@ -75,17 +69,22 @@ function OrderSure(props) {
 
     const add = async () => {
         // const token = 
-        await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`, {
+        arr();
 
-
-        }, {
-            headers: {
-                authorization: "Bearer " + token,
-            },
-        })
-        window.location.reload(false)
-        alert(" دروست کرا")
+        // console.log(data)
+        await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`,
+            data
+            , {
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+            })
+        // window.location.reload(false)
+        // alert(" دروست کرا")
+        // console.log(data)
     }
+
+
 
 
 
@@ -127,7 +126,7 @@ function OrderSure(props) {
                 <textarea className='tebini' /> */}
                 <p>{props.note} : {t("note")}</p>
                 <a href="#" className="button" onClick={props.toggle} style={{ background: "grey" }}>{t("Close")}</a>
-                <a href="#" className="button" onClick={arr}>{t("checkout")}</a>
+                <a href="#" className="button" onClick={add}>{t("checkout")}</a>
             </div>
 
         </div>
