@@ -4,7 +4,7 @@ import aa from "../../images/logo.png"
 import { GrLanguage } from "react-icons/gr";
 import i18next from "i18next";
 import {
-    Link, a, useLocation 
+    Link, NavLink, useLocation 
  } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { GrCart } from "react-icons/gr";
@@ -12,7 +12,7 @@ import { CgProfile } from "react-icons/cg";
 import OrderCart from '../OrderCart/OrderCart';
 import { Navbar as Navs } from "./Navbar.style";
 
-function Nav() {
+function Enav() {
     // const usePathname = () => {
     //     const location = useLocation();
     //     return location.pathname;
@@ -61,48 +61,16 @@ function Nav() {
                         </a>
                     </div>
                     <li>
-                        <a
-                            href="/"
+                        <NavLink
+                            to="/"
                             onClick={() => {
                                 menuHandler();
                             }}
                         >
                             {t("home")}
-                        </a>
+                        </NavLink>
                     </li>
-                    <li>
-                        <a
-                            href="#about-section"
-                            onClick={() => {
-                                menuHandler();
-                            }}
-                        >
-                            {t("about_us")}
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a
-                            href="#brand-section"
-                            onClick={() => {
-                                menuHandler();
-                            }}
-                        >
-                            {t("brands")}
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="#contact-section"
-                            onClick={() => {
-                                menuHandler();
-                            }}
-                        >
-                            {t("call_us")}
-                        </a>
-                    </li>
+                   
                     <div className='nav-utils'>
                       
                         <div className='cart-logo' onClick={togglelang}>
@@ -130,7 +98,7 @@ function Nav() {
     )
 }
 
-export default Nav
+export default Enav
 
 
 

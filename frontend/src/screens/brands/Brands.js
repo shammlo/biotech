@@ -25,6 +25,7 @@ function Brands() {
                                     logo={e.logo}
                                     desc={e.description}
                                 />
+
                             </Link>
                         ))
 
