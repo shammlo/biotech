@@ -28,7 +28,6 @@ function App() {
     <>
       <CardContext.Provider value={{ cart, setCart }}>
         <Cart />
-
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/brands/:id" element={<BrandView />} />
