@@ -1,4 +1,5 @@
 import React from 'react'
+import Cart from '../components/OrderCart/Cart'
 import About from './About/About'
 import Brands from './brands/Brands'
 import Contact from './contact/Contact'

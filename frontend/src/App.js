@@ -5,6 +5,7 @@ import { CardContext } from "./context/CardContext";
 import { Routes, Route } from "react-router-dom";
 import BrandView from "./screens/dynamic/brands/BrandView";
 import Login from "./screens/login/Login";
+import Cart from "./components/OrderCart/Cart";
 
 
 
@@ -26,6 +27,8 @@ function App() {
   return (
     <>
       <CardContext.Provider value={{ cart, setCart }}>
+        <Cart />
+
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/brands/:id" element={<BrandView />} />
