@@ -14,6 +14,9 @@ const profileSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    licenseNumber: {
+      type: String,
+    },
     image: {
       type: String,
     },

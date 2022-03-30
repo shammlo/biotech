@@ -5,16 +5,18 @@ import Product from "../models/ProductModel.js";
 // @route Post api/category/:id
 // @access Private admin/author
 const createOrUpdateCart = async (req, res) => {
-  const { products } = req.body;
+  const { products, note } = req.body;
 
   try {
     let total = 0;
     await products.forEach(async (p) => {
       const data = await Product.findById(p.product);
       total += data.price * p.quantity;
+      p.total = data.price * p.quantity;
     });
     const cart = (await Cart.findOne({ _id: req.params.id })) || new Cart({});
 
+    cart.note = note;
     cart.products = products;
     cart.total = total;
     cart.userId = req.user.id;
