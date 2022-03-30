@@ -5,7 +5,7 @@ import User from "../models/UserModel.js";
 // @route Post api/profile/:id
 // @access Private
 const createOrUpdateProfile = async (req, res) => {
-  const { name, address, phoneNumber, image } = req.body;
+  const { name, address, phoneNumber, image, licenseNumber } = req.body;
 
   const userId = req.user.id;
 
@@ -16,6 +16,7 @@ const createOrUpdateProfile = async (req, res) => {
     data.address = address;
     data.phoneNumber = phoneNumber;
     data.image = image;
+    data.licenseNumber = licenseNumber;
     data.user = userId;
 
     const userData = await User.findOne({ _id: userId });

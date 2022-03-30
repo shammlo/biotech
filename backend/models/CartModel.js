@@ -9,6 +9,9 @@ const cartSchema = mongoose.Schema(
     total: {
       type: Number,
     },
+    note: {
+      type: String,
+    },
     state: {
       type: String,
       default: "created",
@@ -20,6 +23,7 @@ const cartSchema = mongoose.Schema(
           ref: "product",
         },
         quantity: { type: Number },
+        total: { type: Number },
       },
     ],
   },
