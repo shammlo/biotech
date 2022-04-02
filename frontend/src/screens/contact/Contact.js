@@ -12,19 +12,16 @@ function Contact() {
             <div className='contact-logo-parent ' >
                 <img className="footer-logo" width="200px" src={bioTechLogo} alt="biotech logo" />
             </div>
-
             <div className='contact-container '>
                 <div className='contact-content'>
                     <div className='contact-card-parent'>
                         <div className='contact-card '>
                             <div className='card-icon'>
                                 <FaFacebookF />
-
                             </div>
                             &nbsp;
                             <div className='card-number'>
                                 <h2> biotech/facebook</h2>
-
                             </div>
                         </div>
                         <div className='contact-card'>
@@ -36,13 +33,11 @@ function Contact() {
                                 <h2> biotech instagram</h2>
                             </div>
                         </div>
-
                     </div>
                     <div className='contact-card-parent'>
                         <div className='contact-card'>
                             <div className='card-icon'>
                                 <AiOutlineMail />
-
                             </div>
                             &nbsp;
                             <div className='card-number'>
@@ -52,15 +47,12 @@ function Contact() {
                         <div className='contact-card'>
                             <div className='card-icon'>
                                 <AiOutlinePhone />
-
                             </div>
                             &nbsp;
                             <div className='card-number'>
                                 <h2>  0770 000 0000</h2>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <div className='contact-map '>
