@@ -115,3 +115,16 @@
     font-size: 3vmin;
   }
 }
+.contact-section {
+  position: relative;
+}
+
+.contact-logo-parent {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.contact-logo-parent .footer-logo {
+  position: absolute;
+  top: -93%;
+}
