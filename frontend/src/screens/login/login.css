@@ -68,3 +68,11 @@
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 1200px) {
+  .login-logo {
+    display: none;
+  }
+  .login-input {
+    width: 85%;
+  }
+}

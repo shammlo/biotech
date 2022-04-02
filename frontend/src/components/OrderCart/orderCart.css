@@ -105,3 +105,15 @@
   width: 100%;
   border: #d57c00 solid 3px;
 }
+.h1-1 {
+  text-align: center;
+}
+.h1-2 {
+  text-decoration: none;
+  color: #d57c00;
+
+  text-align: center;
+}
+.h1-2:hover {
+  color: #d57c00;
+}

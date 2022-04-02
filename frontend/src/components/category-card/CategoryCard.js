@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import "./categoryCard.css"
 import { CardContext } from "../../context/CardContext";
 import { GrCart } from "react-icons/gr";
+import cookies from 'js-cookie';
+
 import { AiOutlineInfoCircle } from "react-icons/ai";
 function CategoryCard(props) {
     const { cart, setCart } = useContext(CardContext)
+    const currentLanguageCode = cookies.get('i18next') || 'en';
 
     // console.log(props.cart)
 
@@ -41,7 +44,9 @@ function CategoryCard(props) {
                     <div className="icon" ><AiOutlineInfoCircle style={{ zoom: "200%" }} /></div>
                     <div className="contents">
                         <p>
-                            {props.cart.descriptionKR}
+                            {currentLanguageCode === 'ar'
+                                ? props.cart.descriptionAR
+                                : props.cart.descriptionKR}
                         </p>
                     </div>
                 </div>

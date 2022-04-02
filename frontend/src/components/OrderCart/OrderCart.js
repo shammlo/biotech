@@ -2,17 +2,20 @@ import React, { useContext, useState, useEffect } from 'react';
 import './orderCart.css';
 import { CardContext } from '../../context/CardContext';
 import cookies from 'js-cookie';
-import OrderSure from './OrderSure';
+// import OrderSure from './OrderSure';
 import { useTranslation } from 'react-i18next';
 import Modal from '../modal/Modal';
 import './cartModal.scss';
-
+import axios from 'axios';
+import { Link } from 'react-router-dom'
 function OrderCart({ openCart, setOpenCart }) {
     const { t } = useTranslation();
     const currentLanguageCode = cookies.get('i18next') || 'en';
 
     const { cart, setCart } = useContext(CardContext);
-
+    const user = localStorage.getItem("token") ? localStorage.getItem("token") : "empty"
+    const token = user === "empty" ? "empty" : JSON.parse(user).token;
+    // console.log(token)
     const [sure, setsure] = useState(false);
     const [note, setnote] = useState('');
     const [modal, setModal] = useState(false);
@@ -30,6 +33,23 @@ function OrderCart({ openCart, setOpenCart }) {
 
     // ----------------------------------------------------------------
     // *** FUNCTION ***
+
+    const [data, setData] = useState({
+        products: []
+    })
+    // console.table(cart)
+
+    const order = cart;
+
+    const arr = () => {
+        const eee = [];
+        order.forEach((item, index) => {
+            eee.push({ product: item._id, quantity: item.quantity });
+            // quant = [...quant, item.quantity]
+        })
+        setData({ ...data, products: eee })
+    }
+
 
     const toggle = () => {
         setsure(!sure);
@@ -61,9 +81,27 @@ function OrderCart({ openCart, setOpenCart }) {
         setCart(newArr);
     };
 
+    const add = async () => {
+
+        arr();
+
+        await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`,
+            data
+            , {
+                headers: {
+                    authorization: "Bearer " + token,
+                },
+            })
+        window.location.reload(false)
+        alert(" دروست کرا")
+        // console.log(data)
+    }
+
     // ----------------------------------------------------------------
     return (
         <>
+
+
             {!sure && (
                 <div className={`cart-order ${openCart ? 'show' : 'close'}`}>
                     {openCart && <div className="backdrop" onClick={closeAll}></div>}
@@ -78,52 +116,60 @@ function OrderCart({ openCart, setOpenCart }) {
                         <span className="main-color-text">$2,229.97</span>
                     </div> */}
                                 </div>
-
-                                <ul className="shopping-cart-items">
-                                    {cart.map((e, index) => {
-                                        return (
-                                            <li className="clearfix " key={index}>
-                                                <img
-                                                    src={`http://api.biotech.cf${e.image}`}
-                                                    alt="item1"
-                                                    onClick={(e) => handleRemoveField(e, index)}
-                                                />
-                                                <span className="item-name">
-                                                    {currentLanguageCode === 'ar'
-                                                        ? e.nameAR
-                                                        : e.nameKR}
-                                                </span>
-                                                {/* <span className="item-price">$849.99</span> */}
-                                                <span className="item-quantity">
-                                                    {t('quantity')}:{' '}
-                                                    <input
-                                                        style={{ width: '60px' }}
-                                                        type="number"
-                                                        name="quantity"
-                                                        onChange={updateFieldChanged(index)}
+                                {token === 'empty' ? <>  <h1 className='h1-1'>{t('pleaselogin')}</h1><Link onClick={closeAll} className='h1-2' to="/login"><h1 className='h1-2'>{t('clicktolog')}</h1></Link></> : <>  <ul className="shopping-cart-items">
+                                    {cart.length === 0 ? <h1 className='h1-1'>{t('emptycard')}</h1> :
+                                        cart.map((e, index) => {
+                                            return (
+                                                <li className="clearfix " key={index}>
+                                                    <img
+                                                        src={`http://api.biotech.cf${e.image}`}
+                                                        alt="item1"
+                                                        onClick={(e) => handleRemoveField(e, index)}
                                                     />
-                                                </span>
-                                                <span className="item-price">
-                                                    {isNaN(e.quantity)
-                                                        ? 'price'
-                                                        : `$ ${e.quantity * e.price}`}
-                                                </span>
-                                            </li>
-                                        );
-                                    })}
+                                                    <span className="item-name">
+                                                        {currentLanguageCode === 'ar'
+                                                            ? e.nameAR
+                                                            : e.nameKR}
+                                                    </span>
+                                                    {/* <span className="item-price">$849.99</span> */}
+                                                    <span className="item-quantity">
+                                                        {t('quantity')}:{' '}
+                                                        <input
+                                                            style={{ width: '60px' }}
+                                                            type="number"
+                                                            name="quantity"
+                                                            onChange={updateFieldChanged(index)}
+                                                        />
+                                                    </span>
+                                                    <span className="item-price">
+                                                        {isNaN(e.quantity)
+                                                            ? 'price'
+                                                            : `$ ${e.quantity * e.price}`}
+                                                    </span>
+                                                </li>
+                                            );
+                                        })
+                                    }
                                 </ul>
-                                <span className="item-quantity">{t('note')}</span>
+                                    <span className="item-quantity">{t('note')}</span>
 
-                                <textarea
-                                    className="tebini"
-                                    onChange={(e) => setnote(e.target.value)}
-                                />
+                                    <textarea
+                                        className="tebini"
+                                        onChange={(e) => setnote(e.target.value)}
+                                    />
 
-                                <button className="button" onClick={checkoutHandler}>
-                                    {t('checkout')}
-                                </button>
+                                    <button className="button" onClick={checkoutHandler}>
+                                        {t('checkout')}
+                                    </button>
+                                    <button className="button" style={{ background: 'grey' }} onClick={() => localStorage.removeItem('cart')} >
+                                        {t('emptycart')}
+                                    </button>
+                                </>}
                             </div>
                         </div>
+
+
+
                         {/* {sure ? <OrderSure toggle={toggle} note={note} /> : null} */}
                     </div>
                 </div>
@@ -134,7 +180,7 @@ function OrderCart({ openCart, setOpenCart }) {
                     {modal ? (
                         <>
                             <div className="modal-title">
-                                <h2>{t('Your order has been sent successfully!')}</h2>
+                                <h2>{t('sure')}</h2>
                             </div>
 
                             <div className="modal-cart">
@@ -176,10 +222,10 @@ function OrderCart({ openCart, setOpenCart }) {
 
                             <div className="modal-buttons">
                                 <button className="button button-close" onClick={closeAll}>
-                                    Close
+                                    {t("Close")}
                                 </button>
                                 <button className="button" onClick={closeAll}>
-                                    Order
+                                    {t("checkout")}
                                 </button>
                             </div>
                         </>

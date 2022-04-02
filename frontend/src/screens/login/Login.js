@@ -19,7 +19,7 @@ function Login() {
     // console.log(i18next.language)
     const login = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5555/api/users/login", {
+            const { data } = await axios.post(`${process.env.REACT_APP_MAIN_URL}users/login`, {
                 email: username,
                 password: password
             })
@@ -67,22 +67,25 @@ function Login() {
             </div>
             <div className='login-input' dir='rtl'>
 
-                <div className="login bd">
+                <div className="login " >
                     <form>
-                        <div className="form">
-                            {LoginStatus ? <> <h2>{t("logedin")}</h2>
-                                <input onClick={logout} defaultValue={t("logout")} className="submit" />
-                                <input onClick={() => navigate(-1)} defaultValue={t("backhome")} className="submit" />
-                            </>
-                                :
-                                <>
-                                    <h2>{errors}</h2>
-                                    <input type="text" onChange={e => setusername(e.target.value)} placeholder={t("user")} />
-                                    <input type="password" onChange={e => setpassword(e.target.value)} placeholder={t("password")} />
-                                    <input onClick={login} defaultValue={t("LoginB")} className="submit" />
-                                </>
-                            }
+
+                        {LoginStatus ? <div className="form"> <h2>{t("logedin")}</h2>
+                            {/* <input onClick={() => navigate("/")} defaultValue={t("backhome")} className="submit" /> */}
+
+                            <input onClick={logout} defaultValue={t("logout")} className="submit bd" />
+                            {/* <input onClick={() => navigate("/")} defaultValue={t("backhome")} className="submit" /> */}
+
                         </div>
+                            :
+                            <div className="form">
+                                <h2>{errors}</h2>
+                                <input type="text" onChange={e => setusername(e.target.value)} placeholder={t("user")} />
+                                <input type="password" onChange={e => setpassword(e.target.value)} placeholder={t("password")} />
+                                <input onClick={login} defaultValue={t("LoginB")} className="submit" />
+                            </div>
+                        }
+
                     </form>
                 </div>
             </div>

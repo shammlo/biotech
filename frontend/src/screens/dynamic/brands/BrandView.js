@@ -4,8 +4,11 @@ import { Link } from "react-router-dom"
 
 import axios from 'axios';
 import CategoryCard from '../../../components/category-card/CategoryCard';
-import Nav from '../../../components/navigation/Nav';
+// import Nav from '../../../components/navigation/Nav';
 import "./brandview.css"
+// import { useTranslation } from 'react-i18next';
+
+import cookies from 'js-cookie';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -21,12 +24,14 @@ import { FreeMode, Navigation } from "swiper";
 import Enav from '../../../components/navigation/Enav';
 
 function BrandView() {
+
     const params = useParams();
     const id = params.id;
     const [brand, setbrand] = useState([]);
     const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
 
+    const currentLanguageCode = cookies.get('i18next') || 'kr';
 
     useEffect(() => {
 
@@ -81,14 +86,36 @@ function BrandView() {
         //     setbrand({ ...brand, products: response.data })
         // });
     }, [category]);
+    const [slides, setslides] = useState(8);
+
+    useEffect(() => {
+        if (window.innerWidth <= 1000) {
+            setslides(6)
+
+
+        }
+        if (window.innerWidth <= 800) {
+            setslides(4)
+
+
+        }
+        if (window.innerWidth <= 500) {
+            setslides(3)
+
+
+
+        }
+
+
+    }, []);
     return (
         <>
             <Enav />
             <div className='category-brand '>
                 <div className="multi-button">
                     <Swiper
-                        slidesPerView={8}
-                        spaceBetween={20}
+                        slidesPerView={slides}
+                        spaceBetween={10}
                         navigation={true}
                         freeMode={true}
                         pagination={{
@@ -104,7 +131,9 @@ function BrandView() {
                                         setcategory(e._id)
 
                                     }>
-                                    <span className="a">{e.nameAR}</span>
+                                    <span className="a">{currentLanguageCode === 'ar'
+                                        ? e.nameAR
+                                        : e.nameKR}</span>
                                     {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
 

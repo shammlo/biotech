@@ -34,12 +34,12 @@ function OrderSure(props) {
 
 
 
-    let prod = [];
-    let quant = [];
-    order.forEach((item, index) => {
-        prod = [...prod, item._id]
-        quant = [...quant, item.quantity]
-    })
+    // let prod = [];
+    // let quant = [];
+    // order.forEach((item, index) => {
+    //     prod = [...prod, item._id]
+    //     quant = [...quant, item.quantity]
+    // })
     // console.log(prod, quant)
 
     // let formdata = new FormData()
