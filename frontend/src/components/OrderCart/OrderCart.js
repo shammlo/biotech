@@ -57,10 +57,7 @@ function OrderCart({ openCart, setOpenCart }) {
         setCart((prev) => prev.filter((item) => item !== prev[index]));
     };
 
-    const checkoutHandler = () => {
-        setsure(true);
-        setOpenCart(!openCart);
-    };
+
     const updateFieldChanged = (index) => (e) => {
         // name = e.target.name //key
 
@@ -83,7 +80,11 @@ function OrderCart({ openCart, setOpenCart }) {
         });
         setData({ ...data, products: eee });
     };
-
+    const checkoutHandler = () => {
+        arr();
+        setsure(true);
+        setOpenCart(!openCart);
+    };
     const add = async () => {
         arr();
 
