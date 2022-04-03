@@ -30,6 +30,7 @@ function BrandView() {
     const [brand, setbrand] = useState([]);
     const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
+    const [search, setSearch] = useState('');
 
     const currentLanguageCode = cookies.get('i18next') || 'kr';
 
@@ -39,7 +40,7 @@ function BrandView() {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
                 setbrand(data)
-                console.log(brand)
+                // console.log(brand)
             } catch (error) {
                 console.log(error)
             }
@@ -108,9 +109,18 @@ function BrandView() {
 
 
     }, []);
+
+    const filteredProducts = brand.products?.filter((product) => {
+        if (
+            product.nameKR.toLowerCase().includes(search) ||
+            product.nameAR.toLowerCase().includes(search)
+        ) {
+            return product;
+        }
+    });
     return (
         <>
-            <Enav />
+            <Enav setSearch={setSearch} search={search} />
             <div className='category-brand '>
                 <div className="multi-button">
                     <Swiper
@@ -160,15 +170,11 @@ function BrandView() {
 
             </div>
             <div className='category-cards'>
-                {brand && brand.products && brand.products.length !== 0 &&
-                    brand.products.map((e) => (
-                        // <Link to={`/brands/${e._id}`}>
-                        <CategoryCard cart={e} />
-
-                        // </Link>
-                    ))
-
-                }
+                {filteredProducts?.map((e) => (
+                    // <Link to={`/brands/${e._id}`}>
+                    <CategoryCard cart={e} />
+                    // </Link>
+                ))}
 
             </div>
 

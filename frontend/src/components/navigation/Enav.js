@@ -12,7 +12,7 @@ import { CgProfile } from "react-icons/cg";
 import OrderCart from '../OrderCart/OrderCart';
 import { Navbar as Navs } from "./Navbar.style";
 
-function Enav() {
+function Enav({ setSearch, search }) {
     // const usePathname = () => {
     //     const location = useLocation();
     //     return location.pathname;
@@ -37,8 +37,10 @@ function Enav() {
         } else { i18next.changeLanguage("ku"); }
 
         // console.log(i18next.language)
-
     }
+    const clearSearch = () => {
+        setSearch('');
+    };
     return (<>
         <Navs bg="white" fg="black">
             <h6 className='ax'>.</h6>
@@ -60,6 +62,33 @@ function Enav() {
                             <img src={aa} alt="logo" />
                         </a>
                     </div>
+
+                    <div className="search-bar">
+                        {/* <label>Search:</label> */}
+
+                        <input
+                            type="text"
+                            placeholder="Search product"
+                            value={search && search}
+                            onChange={(event) => setSearch(event.target.value.toLowerCase())}
+                        />
+                        <div className="clear-search" onClick={clearSearch}>
+                            <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth="0"
+                                viewBox="0 0 512 512"
+                                color="#02073E"
+                                height="24px"
+                                width="24px"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style={{ color: 'rgb(2, 7, 62)' }}
+                            >
+                                <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
                     <li>
                         <NavLink
                             to="/"
@@ -91,7 +120,7 @@ function Enav() {
                 
             </div>
         </Navs>
-        {cartShow ? <OrderCart toggle={toggle} /> : null}
+        <OrderCart toggle={toggle} openCart={cartShow} setOpenCart={setcartShow} />
 
     </>
 

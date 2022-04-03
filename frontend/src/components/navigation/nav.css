@@ -53,6 +53,15 @@
   display: flex;
   justify-content: space-evenly;
 }
+.nav-utils .cart-logo:hover svg path {
+  transition: all 0.2s ease-in;
+  stroke: #ff9300;
+}
+
+.nav-utils .cart-logo:hover .c-icon path {
+  transition: all 0.2s ease-in;
+  fill: #ff9300;
+}
 .cart-logo {
   margin: auto;
   zoom: 140%;

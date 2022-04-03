@@ -52,6 +52,7 @@
   position: relative;
   display: grid;
   place-items: center;
+  padding-bottom: 40px;
   grid-template-columns: auto auto auto auto;
 }
 

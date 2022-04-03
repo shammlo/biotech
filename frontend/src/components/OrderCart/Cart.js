@@ -7,14 +7,14 @@ const Cart = () => {
     const [openCart, setOpenCart] = useState(false);
     const { cart } = useContext(CardContext);
     const toggleCart = () => setOpenCart(!openCart);
-    console.log(cart);
+    // console.log(cart);
     return (
         <>
             <div className="cart-fixed" onClick={toggleCart}>
                 <div className="cart-wrapper">
                     <div className="cart-count">{cart.length}</div>
                     <div className="cart-logo">
-                        <GrCart />
+                        <GrCart className='fixed-cart' />
                     </div>
                 </div>
             </div>

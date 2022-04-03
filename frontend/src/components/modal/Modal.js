@@ -8,7 +8,7 @@ const Modal = ({ show, modalHandler, children, closeAll }) => {
             {show && <div className="backdrop" onClick={closeAll}></div>}
             <div className={`modal-overlay ${show ? 'show' : 'close'}`}>
                 <div className="modal-content">
-                    <div className="modal-close" onClick={modalHandler}>
+                    <div className="modal-close" onClick={closeAll}>
                         <svg
                             stroke="currentColor"
                             fill="currentColor"

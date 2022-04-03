@@ -187,3 +187,9 @@
 .wrapper .inside .contents p {
   font-size: 0.8vmax;
 }
+
+@media (max-width: 900px) {
+  .wrapper .inside .contents p {
+    font-size: 2vmax;
+  }
+}

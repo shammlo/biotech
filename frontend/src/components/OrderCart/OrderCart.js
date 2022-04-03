@@ -34,21 +34,8 @@ function OrderCart({ openCart, setOpenCart }) {
     // ----------------------------------------------------------------
     // *** FUNCTION ***
 
-    const [data, setData] = useState({
-        products: []
-    })
+
     // console.table(cart)
-
-    const order = cart;
-
-    const arr = () => {
-        const eee = [];
-        order.forEach((item, index) => {
-            eee.push({ product: item._id, quantity: item.quantity });
-            // quant = [...quant, item.quantity]
-        })
-        setData({ ...data, products: eee })
-    }
 
 
     const toggle = () => {
@@ -81,6 +68,23 @@ function OrderCart({ openCart, setOpenCart }) {
         setCart(newArr);
     };
 
+    const [data, setData] = useState({
+        products: []
+    })
+
+    const order = cart;
+
+    const arr = () => {
+        const eee = [];
+        order.forEach((item, index) => {
+            eee.push({ product: item._id, quantity: item.quantity });
+            // quant = [...quant, item.quantity]
+        })
+        setData({ ...data, products: eee })
+    }
+
+
+
     const add = async () => {
 
         arr();
@@ -92,7 +96,7 @@ function OrderCart({ openCart, setOpenCart }) {
                     authorization: "Bearer " + token,
                 },
             })
-        window.location.reload(false)
+        // window.location.reload(false)
         alert(" دروست کرا")
         // console.log(data)
     }
@@ -124,6 +128,7 @@ function OrderCart({ openCart, setOpenCart }) {
                                                     <img
                                                         src={`http://api.biotech.cf${e.image}`}
                                                         alt="item1"
+                                                        className='cart-item-image'
                                                         onClick={(e) => handleRemoveField(e, index)}
                                                     />
                                                     <span className="item-name">
@@ -224,7 +229,7 @@ function OrderCart({ openCart, setOpenCart }) {
                                 <button className="button button-close" onClick={closeAll}>
                                     {t("Close")}
                                 </button>
-                                <button className="button" onClick={closeAll}>
+                                <button className="button" onClick={add}>
                                     {t("checkout")}
                                 </button>
                             </div>
