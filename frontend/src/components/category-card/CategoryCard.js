@@ -28,7 +28,7 @@ function CategoryCard(props) {
                                 <p>${props.cart.price}</p>
                             </div>
                             {/* <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} /> */}
-                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); alert("done") }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
+                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); props.notify() }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
                         </div>
                         <div className="right">
                             {/* <div className="done"><i className="material-icons">done</i></div> */}

@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import BrandView from "./screens/dynamic/brands/BrandView";
 import Login from "./screens/login/Login";
 import Cart from "./components/OrderCart/Cart";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -14,7 +15,6 @@ function App() {
 
 
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
-
 
   // useEffect(() => {
   //   setCart(localStorage.getItem('cart'))

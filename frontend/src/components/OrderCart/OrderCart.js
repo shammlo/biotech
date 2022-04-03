@@ -8,6 +8,8 @@ import Modal from '../modal/Modal';
 import './cartModal.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+
 function OrderCart({ openCart, setOpenCart }) {
     const { t } = useTranslation();
     const currentLanguageCode = cookies.get('i18next') || 'en';
@@ -56,10 +58,7 @@ function OrderCart({ openCart, setOpenCart }) {
         setCart((prev) => prev.filter((item) => item !== prev[index]));
     };
 
-    const checkoutHandler = () => {
-        setsure(true);
-        setOpenCart(!openCart);
-    };
+
     const updateFieldChanged = (index) => (e) => {
         // name = e.target.name //key
 
@@ -80,10 +79,14 @@ function OrderCart({ openCart, setOpenCart }) {
             eee.push({ product: item._id, quantity: item.quantity });
             // quant = [...quant, item.quantity]
         })
-        setData({ ...data, products: eee })
+        setData({ ...data, products: eee, note: note })
     }
 
-
+    const checkoutHandler = () => {
+        setsure(true);
+        setOpenCart(!openCart);
+        arr();
+    };
 
     const add = async () => {
 
@@ -97,7 +100,16 @@ function OrderCart({ openCart, setOpenCart }) {
                 },
             })
         // window.location.reload(false)
-        alert(" دروست کرا")
+        toast.success(' دروست کرا', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        closeAll();
         // console.log(data)
     }
 
@@ -237,6 +249,7 @@ function OrderCart({ openCart, setOpenCart }) {
                     ) : null}
                 </Modal>
             }
+            <ToastContainer rtl={true} />
         </>
     );
 }

@@ -132,7 +132,17 @@ export const Navbar = styled.div`
         padding: 8px 15px;
         display: flex;
         align-items: center;
+        &:hover {
+            svg path {
+                transition: all 0.2s ease-in;
+                stroke: #ff9300;
+            }
 
+            .c-icon path {
+                transition: all 0.2s ease-in;
+                fill: #ff9300;
+            }
+        }
         a {
             display: flex;
             align-items: center;

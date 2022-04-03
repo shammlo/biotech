@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 import CategoryCard from '../../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
-import "./brandview.css"
+import './brandview.css';
 // import { useTranslation } from 'react-i18next';
 
 import cookies from 'js-cookie';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { ToastContainer, toast } from 'react-toastify';
 
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
 
 // import required modules
-import { FreeMode, Navigation } from "swiper";
+import { FreeMode, Navigation } from 'swiper';
 import Enav from '../../../components/navigation/Enav';
 
 function BrandView() {
-
     const params = useParams();
     const id = params.id;
     const [brand, setbrand] = useState([]);
@@ -35,16 +32,15 @@ function BrandView() {
     const currentLanguageCode = cookies.get('i18next') || 'kr';
 
     useEffect(() => {
-
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
-                setbrand(data)
+                setbrand(data);
                 // console.log(brand)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         run();
 
         // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
@@ -55,32 +51,30 @@ function BrandView() {
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category`);
-                setbuttons(data)
+                setbuttons(data);
             } catch (error) {
-                console.log(error)
-
+                console.log(error);
             }
-        }
+        };
         run();
         // axios.get(`http://localhost:5555/api/category`).then((response) => {
         //     setbuttons(response.data)
         // });
     }, []);
 
-
     useEffect(() => {
-
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`);
-                setbrand({ ...brand, products: data })
+                const { data } = await axios.get(
+                    `${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`
+                );
+                setbrand({ ...brand, products: data });
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         if (category !== '') {
             run();
-
         }
         // console.log(category)
         // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
@@ -91,24 +85,29 @@ function BrandView() {
 
     useEffect(() => {
         if (window.innerWidth <= 1000) {
-            setslides(6)
-
-
+            setslides(6);
         }
         if (window.innerWidth <= 800) {
-            setslides(4)
-
-
+            setslides(4);
         }
         if (window.innerWidth <= 500) {
-            setslides(3)
-
-
-
+            setslides(3);
         }
-
-
     }, []);
+
+    const notify = () => {
+        toast.success('Done', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        // toast.success('Done', {
+        //     autoClose: 500,
+        // });
+    };
 
     const filteredProducts = brand.products?.filter((product) => {
         if (
@@ -121,7 +120,7 @@ function BrandView() {
     return (
         <>
             <Enav setSearch={setSearch} search={search} />
-            <div className='category-brand '>
+            <div className="category-brand ">
                 <div className="multi-button">
                     <Swiper
                         slidesPerView={slides}
@@ -132,23 +131,21 @@ function BrandView() {
                             clickable: true,
                         }}
                         modules={[FreeMode]}
-                        className="mySwiper" >
+                        className="mySwiper"
+                    >
                         {buttons &&
                             buttons.map((e) => (
-
-                                <SwiperSlide style={{ width: "fit-content" }} className="btn btn-cut"
-                                    onClick={() =>
-                                        setcategory(e._id)
-
-                                    }>
-                                    <span className="a">{currentLanguageCode === 'ar'
-                                        ? e.nameAR
-                                        : e.nameKR}</span>
+                                <SwiperSlide
+                                    style={{ width: 'fit-content' }}
+                                    className="btn btn-cut"
+                                    onClick={() => setcategory(e._id)}
+                                >
+                                    <span className="a">
+                                        {currentLanguageCode === 'ar' ? e.nameAR : e.nameKR}
+                                    </span>
                                     {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
-
                             ))}
-
                     </Swiper>
                     {/* {buttons &&
                         buttons.map((e) => (
@@ -165,22 +162,18 @@ function BrandView() {
                         ))
 
                     } */}
-
                 </div>
-
             </div>
-            <div className='category-cards'>
+            <div className="category-cards">
                 {filteredProducts?.map((e) => (
                     // <Link to={`/brands/${e._id}`}>
-                    <CategoryCard cart={e} />
+                    <CategoryCard cart={e} notify={notify} />
                     // </Link>
                 ))}
-
+                <ToastContainer rtl={true} />
             </div>
-
-
         </>
-    )
+    );
 }
 
-export default BrandView
+export default BrandView;
