@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function OrderCart({ openCart, setOpenCart }) {
     const { t } = useTranslation();
-    const currentLanguageCode = cookies.get('i18next') || 'en';
+    const currentLanguageCode = cookies.get('i18next') || 'ku';
 
     const { cart, setCart } = useContext(CardContext);
     const user = localStorage.getItem('token') ? localStorage.getItem('token') : 'empty';
@@ -103,6 +103,7 @@ function OrderCart({ openCart, setOpenCart }) {
             draggable: true,
             progress: undefined,
         });
+        setCart([])
         closeAll();
     };
 

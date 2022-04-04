@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { Redirect } from 'react-router';
 
 import axios from 'axios';
 import CategoryCard from '../../../components/category-card/CategoryCard';
@@ -28,13 +29,15 @@ function BrandView() {
     const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
-
+    const [brandData, setBrandData] = useState();
+    const navigate = useNavigate();
     const currentLanguageCode = cookies.get('i18next') || 'kr';
 
     useEffect(() => {
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
+
                 setbrand(data);
                 // console.log(brand)
             } catch (error) {
@@ -42,11 +45,13 @@ function BrandView() {
             }
         };
         run();
+    }, [id]);
 
-        // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
-        //     setbrand(response.data)
-        // });
-    }, []);
+    useEffect(() => {
+        if (id === undefined || id === null || id === '') {
+            return navigate('/');
+        }
+    }, [id]);
     useEffect(() => {
         const run = async () => {
             try {
@@ -80,7 +85,7 @@ function BrandView() {
         // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
         //     setbrand({ ...brand, products: response.data })
         // });
-    }, [category]);
+    }, [category, id, brand]);
     const [slides, setslides] = useState(8);
 
     useEffect(() => {
@@ -139,6 +144,7 @@ function BrandView() {
                                     style={{ width: 'fit-content' }}
                                     className="btn btn-cut"
                                     onClick={() => setcategory(e._id)}
+                                    key={e._id}
                                 >
                                     <span className="a">
                                         {currentLanguageCode === 'ar' ? e.nameAR : e.nameKR}
@@ -167,10 +173,10 @@ function BrandView() {
             <div className="category-cards">
                 {filteredProducts?.map((e) => (
                     // <Link to={`/brands/${e._id}`}>
-                    <CategoryCard cart={e} notify={notify} />
+                    <CategoryCard cart={e} notify={notify} key={e._id} />
                     // </Link>
                 ))}
-                <ToastContainer rtl={true} />
+                <ToastContainer />
             </div>
         </>
     );
