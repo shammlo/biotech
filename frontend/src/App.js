@@ -7,6 +7,7 @@ import BrandView from "./screens/dynamic/brands/BrandView";
 import Login from "./screens/login/Login";
 import Cart from "./components/OrderCart/Cart";
 import 'react-toastify/dist/ReactToastify.css';
+import CategoryView from "./screens/dynamic/CategoryView";
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/brands/:id" element={<BrandView />} />
+          <Route exact path="/category/:id" element={<CategoryView />} />
           <Route exact path="/login" element={<Login />} />
         </Routes>
       </CardContext.Provider>

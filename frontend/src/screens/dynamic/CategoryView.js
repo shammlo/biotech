@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 import axios from 'axios';
-import CategoryCard from '../../../components/category-card/CategoryCard';
+import CategoryCard from '../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
-import "./brandview.css"
+import "./brands/brandview.css"
 // import { useTranslation } from 'react-i18next';
 
 import cookies from 'js-cookie';
@@ -21,9 +21,9 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Navigation } from "swiper";
-import Enav from '../../../components/navigation/Enav';
+import Enav from '../../components/navigation/Enav';
 
-function BrandView() {
+function CategoryView() {
 
     const params = useParams();
     const id = params.id;
@@ -179,4 +179,4 @@ function BrandView() {
     )
 }
 
-export default BrandView
+export default CategoryView
