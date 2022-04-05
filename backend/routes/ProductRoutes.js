@@ -3,7 +3,6 @@ import {
   allProducts,
   createOrUpdateProduct,
   deleteProduct,
-  fixDuplicates,
   productById,
   productsByBrandAndCategory,
   searchProducts,
