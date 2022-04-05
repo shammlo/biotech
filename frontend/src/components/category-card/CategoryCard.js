@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import "./categoryCard.css"
 import { CardContext } from "../../context/CardContext";
 import { GrCart } from "react-icons/gr";
+import cookies from 'js-cookie';
+
 import { AiOutlineInfoCircle } from "react-icons/ai";
 function CategoryCard(props) {
     const { cart, setCart } = useContext(CardContext)
+    const currentLanguageCode = cookies.get('i18next') || 'en';
 
     // console.log(props.cart)
 
@@ -25,7 +28,7 @@ function CategoryCard(props) {
                                 <p>${props.cart.price}</p>
                             </div>
                             {/* <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} /> */}
-                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); alert("done") }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
+                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); props.notify() }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
                         </div>
                         <div className="right">
                             {/* <div className="done"><i className="material-icons">done</i></div> */}
@@ -41,7 +44,9 @@ function CategoryCard(props) {
                     <div className="icon" ><AiOutlineInfoCircle style={{ zoom: "200%" }} /></div>
                     <div className="contents">
                         <p>
-                            {props.cart.descriptionKR}
+                            {currentLanguageCode === 'ar'
+                                ? props.cart.descriptionAR
+                                : props.cart.descriptionKR}
                         </p>
                     </div>
                 </div>

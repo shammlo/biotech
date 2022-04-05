@@ -30,7 +30,7 @@
   height: 40px;
   margin-top: 20px;
   background: rgba(255, 255, 255, 0.878);
-  border: 1px solid rgba(77, 77, 77, 0.837);
+  border: 1px solid transparent;
   padding: 0 15px;
   color: rgb(88, 88, 88);
   border-radius: 5px;
@@ -38,18 +38,28 @@
 }
 .login .form input:focus {
   border: 1px solid rgba(255, 255, 255, 0.8);
-  outline: none;
+  outline: 3px solid #c47200;
 }
 ::-webkit-input-placeholder {
   color: rgb(90, 90, 90);
 }
-.login .form input.submit {
+.login .form button.submit {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.9);
+  border: none;
   color: #444;
   font-size: 15px;
   margin-top: 40px;
   font-weight: bold;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.login .form button.submit:hover {
+  transition: all 0.3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .login-logo {
@@ -67,4 +77,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 1200px) {
+  .login-logo {
+    display: none;
+  }
+  .login-input {
+    width: 85%;
+  }
 }

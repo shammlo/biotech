@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 import axios from 'axios';
-import CategoryCard from '../../../components/category-card/CategoryCard';
+import CategoryCard from '../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
-import "./brandview.css"
+import "./brands/brandview.css"
 // import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
-import cookies from 'js-cookie';
+// import cookies from 'js-cookie';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -21,9 +22,9 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Navigation } from "swiper";
-import Enav from '../../../components/navigation/Enav';
+import Enav from '../../components/navigation/Enav';
 
-function BrandView() {
+function CategoryView() {
 
     const params = useParams();
     const id = params.id;
@@ -32,13 +33,25 @@ function BrandView() {
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
 
-    const currentLanguageCode = cookies.get('i18next') || 'kr';
+    const currentLanguageCode = i18next.language || 'kr';
+    console.log(currentLanguageCode)
+
+
+    useEffect(() => {
+
+
+        console.log("asdfafad")
+
+
+    }, [i18next.language])
+
+
 
     useEffect(() => {
 
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${id}`);
                 setbrand(data)
                 // console.log(brand)
             } catch (error) {
@@ -72,8 +85,8 @@ function BrandView() {
 
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`);
-                setbrand({ ...brand, products: data })
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${category}`);
+                setbrand(data)
             } catch (error) {
                 console.log(error)
             }
@@ -179,4 +192,4 @@ function BrandView() {
     )
 }
 
-export default BrandView
+export default CategoryView
