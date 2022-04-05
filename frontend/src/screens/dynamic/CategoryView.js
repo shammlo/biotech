@@ -38,7 +38,7 @@ function CategoryView() {
 
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${id}`);
                 setbrand(data)
                 // console.log(brand)
             } catch (error) {
@@ -72,8 +72,8 @@ function CategoryView() {
 
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`);
-                setbrand({ ...brand, products: data })
+                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${category}`);
+                setbrand(data)
             } catch (error) {
                 console.log(error)
             }
