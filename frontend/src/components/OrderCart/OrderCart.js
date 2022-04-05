@@ -194,7 +194,7 @@ function OrderCart({ openCart, setOpenCart }) {
                                                 className="tebini"
                                                 onChange={(e) => setnote(e.target.value)}
                                             />
-                                            <button className="button" onClick={checkoutHandler}>
+                                            <button className="button" onClick={checkoutHandler} >
                                                 {t('checkout')}
                                             </button>
                                             <button

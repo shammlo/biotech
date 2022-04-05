@@ -7,8 +7,9 @@ import CategoryCard from '../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
 import "./brands/brandview.css"
 // import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
-import cookies from 'js-cookie';
+// import cookies from 'js-cookie';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -32,7 +33,19 @@ function CategoryView() {
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
 
-    const currentLanguageCode = cookies.get('i18next') || 'kr';
+    const currentLanguageCode = i18next.language || 'kr';
+    console.log(currentLanguageCode)
+
+
+    useEffect(() => {
+
+
+        console.log("asdfafad")
+
+
+    }, [i18next.language])
+
+
 
     useEffect(() => {
 

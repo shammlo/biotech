@@ -32,10 +32,11 @@ function Enav({ setSearch, search }) {
         setOpen(!open);
     };
     const togglelang = () => {
-        if (i18next.language === "ku") {
-            i18next.changeLanguage("ar");
-        } else { i18next.changeLanguage("ku"); }
-
+        if (i18next.language === 'ku') {
+            i18next.changeLanguage('ar');
+        } else {
+            i18next.changeLanguage('ku');
+        }
         // console.log(i18next.language)
     }
     const clearSearch = () => {
@@ -102,9 +103,9 @@ function Enav({ setSearch, search }) {
                    
                     <div className='nav-utils'>
                       
-                        <div className='cart-logo' onClick={togglelang}>
+                        {/* <div className='cart-logo' onClick={togglelang}>
                             <GrLanguage />
-                        </div>
+                        </div> */}
                         <div className='cart-logo' onClick={() => { setcartShow(true); menuHandler(); }}>
                             <GrCart />
                         </div>

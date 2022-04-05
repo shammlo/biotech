@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import "./nav.css"
 import aa from '../../images/logo.png';
 import { GrLanguage } from 'react-icons/gr';
@@ -10,7 +10,7 @@ import { CgProfile } from 'react-icons/cg';
 // import OrderCart from '../OrderCart/OrderCart';
 import { Navbar as Navs } from './Navbar.style';
 import OrderCart from '../OrderCart/OrderCart';
-
+import Cookies from 'js-cookie';
 function Nav() {
     // const usePathname = () => {
     //     const location = useLocation();
@@ -40,6 +40,16 @@ function Nav() {
 
         // console.log(i18next.language)
     };
+
+
+    // useEffect(() => {
+
+    //     Cookies.set('i18next', i18next.language);
+    //     console.log(Cookies.get('i18next'))
+    //     // console.log(i18next.language)
+
+    // }, [togglelang])
+
 
     const toggleCart = () => setOpenCart(!openCart);
 
