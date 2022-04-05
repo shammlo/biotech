@@ -19,8 +19,6 @@ router
   .get(productById)
   .get(searchProducts);
 
-router.route("/fixDuplicates/b1").get(fixDuplicates);
-
 router
   .route("/")
   .post(protect, checkRole(["admin", "author"]), createOrUpdateProduct)

@@ -194,29 +194,6 @@ const searchProducts = async (req, res) => {
   }
 };
 
-const fixDuplicates = async (req, res) => {
-  const brandData = await Brand.find({});
-  await brandData.forEach(async (b) => {
-    function removeDuplicates(arr) {
-      return arr.filter((item, index) => arr.indexOf(item) === index);
-    }
-
-    b.products = removeDuplicates(b.products);
-    await b.save();
-  });
-
-  const cateData = await Category.find({});
-  await cateData.forEach(async (b) => {
-    function removeDuplicates(arr) {
-      return arr.filter((item, index) => arr.indexOf(item) === index);
-    }
-
-    b.products = removeDuplicates(b.products);
-    await b.save();
-  });
-  res.json({ j: "success" });
-};
-
 export {
   createOrUpdateProduct,
   deleteProduct,
@@ -224,5 +201,4 @@ export {
   productsByBrandAndCategory,
   productById,
   searchProducts,
-  fixDuplicates,
 };
