@@ -3,6 +3,7 @@ import {
   allProducts,
   createOrUpdateProduct,
   deleteProduct,
+  fixDuplicates,
   productById,
   productsByBrandAndCategory,
   searchProducts,
@@ -17,6 +18,8 @@ router
   .delete(protect, checkRole(["admin", "author"]), deleteProduct)
   .get(productById)
   .get(searchProducts);
+
+router.route("/fixDuplicates/b1").get(fixDuplicates);
 
 router
   .route("/")

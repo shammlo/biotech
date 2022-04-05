@@ -42,16 +42,17 @@ const createOrUpdateProduct = async (req, res) => {
     data.category = category;
     data.state = state;
 
-    const brandData = await Brand.findOne({ _id: brand });
-    console.log(data._id);
-    brandData.products.push(data._id);
-    await brandData.save();
+    if (!req.params.id) {
+      const brandData = await Brand.findOne({ _id: brand });
+      brandData.products.push(data._id);
+      await brandData.save();
 
-    category.forEach(async (c) => {
-      const cateData = await Category.findOne({ _id: c });
-      cateData.products.push(data._id);
-      await cateData.save();
-    });
+      category.forEach(async (c) => {
+        const cateData = await Category.findOne({ _id: c });
+        cateData.products.push(data._id);
+        await cateData.save();
+      });
+    }
 
     const result = await data.save();
     res.json(result);
@@ -193,6 +194,29 @@ const searchProducts = async (req, res) => {
   }
 };
 
+const fixDuplicates = async (req, res) => {
+  const brandData = await Brand.find({});
+  await brandData.forEach(async (b) => {
+    function removeDuplicates(arr) {
+      return arr.filter((item, index) => arr.indexOf(item) === index);
+    }
+
+    b.products = removeDuplicates(b.products);
+    await b.save();
+  });
+
+  const cateData = await Category.find({});
+  await cateData.forEach(async (b) => {
+    function removeDuplicates(arr) {
+      return arr.filter((item, index) => arr.indexOf(item) === index);
+    }
+
+    b.products = removeDuplicates(b.products);
+    await b.save();
+  });
+  res.json({ j: "success" });
+};
+
 export {
   createOrUpdateProduct,
   deleteProduct,
@@ -200,4 +224,5 @@ export {
   productsByBrandAndCategory,
   productById,
   searchProducts,
+  fixDuplicates,
 };
