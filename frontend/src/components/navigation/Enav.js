@@ -60,7 +60,7 @@ function Enav({ setSearch, search }) {
                 <ul className={open ? "open " : ""}>
                     <div className='nav-logo'>
                         <a href='/'>
-                            <img src={aa} alt="logo" />
+                            <img src="http://api.biotech.cf/uploads/image-1649228283079.png"alt="logo" />
                         </a>
                     </div>
 
@@ -69,7 +69,7 @@ function Enav({ setSearch, search }) {
 
                         <input
                             type="text"
-                            placeholder="Search product"
+                            placeholder={t("searchproduct")}
                             value={search && search}
                             onChange={(event) => setSearch(event.target.value.toLowerCase())}
                         />
