@@ -107,6 +107,10 @@ function OrderCart({ openCart, setOpenCart }) {
         closeAll();
     };
 
+    const emptyCartHandler = () => {
+        setCart([]);
+        closeAll();
+    };
     // ----------------------------------------------------------------
     return (
         <>
@@ -200,10 +204,9 @@ function OrderCart({ openCart, setOpenCart }) {
                                             <button
                                                 className="button"
                                                 style={{ background: 'grey' }}
-                                                onClick={() => {
-                                                    localStorage.removeItem('cart');
-                                                    closeAll();
-                                                }}
+                                                onClick={
+                                                    emptyCartHandler
+                                                }
                                             >
                                                 {t('emptycart')}
                                             </button>

@@ -37,7 +37,7 @@ function Nav() {
         } else {
             i18next.changeLanguage('ku');
         }
-
+        window.location.reload(false)
         // console.log(i18next.language)
     };
 
@@ -118,7 +118,7 @@ function Nav() {
                         </li>
                         <div className="nav-utils">
                             <div className="cart-logo" onClick={togglelang}>
-                                <GrLanguage />
+                                <a>{t('lang')}</a>
                             </div>
                             <div
                                 className="cart-logo"
