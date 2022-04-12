@@ -78,7 +78,7 @@ function OrderCart({ openCart, setOpenCart }) {
             eee.push({ product: item._id, quantity: item.quantity });
             // quant = [...quant, item.quantity]
         });
-        setData({ ...data, products: eee });
+        setData({ ...data, products: eee, note: note });
     };
     const checkoutHandler = () => {
         arr();
@@ -274,7 +274,7 @@ function OrderCart({ openCart, setOpenCart }) {
                             </div>
 
                             <div className="modal-note">
-                                <span>note: {t(note)}</span>
+                                <span>{t('note')}: {note}</span>
                             </div>
 
                             <div className="modal-buttons">
