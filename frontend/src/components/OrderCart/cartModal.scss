@@ -21,13 +21,12 @@
     font-size: 1.1rem;
     color: #000;
     min-width: 650px;
-    width: 75vw;
-    height: 85vh;
+    width: 90vw;
+    height: 90vh;
 
     @media screen and (max-width: 950px) {
       min-width: 0;
-      width: 90vw;
-      height: 90vh;
+
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -50,6 +49,12 @@
     top: -5px;
     right: -5px;
     cursor: pointer;
+
+    &:hover {
+      svg {
+        fill: #ff9500;
+      }
+    }
   }
   &-title {
     font-size: 1rem;
@@ -85,7 +90,7 @@
     .cart-content {
       display: flex;
       align-items: flex-end;
-      justify-content: space-between;
+      // justify-content: space-between;
       flex-direction: column;
       width: 100%;
       padding: 0 10px;
@@ -102,10 +107,11 @@
   }
   .modal-cart {
     width: 100%;
-    padding-top: 20px;
+    // padding-top: 20px;
     height: 300px;
     overflow-x: scroll;
     padding-right: 10px;
+    flex-grow: 1;
   }
 
   &-buttons {
@@ -116,6 +122,7 @@
       margin: 0;
       border: none;
       padding: 6px;
+      margin-top: 10px;
       &:not(:last-child) {
         margin-bottom: 10px;
       }
@@ -132,7 +139,7 @@
 }
 .button {
   width: 100%;
-  padding: 8px;
+  // padding: 8px;
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
@@ -204,11 +211,11 @@
 
   .cart_order-wrapper {
     transition: all 0.3s ease-in-out;
-    width: 75vw;
+    width: 90vw;
 
-    @media screen and (max-width: 950px) {
-      width: 90vw;
-    }
+    // @media screen and (max-width: 950px) {
+    //     width: 90vw;
+    // }
   }
 
   .ordercart-container {
@@ -227,7 +234,7 @@
       display: flex;
       flex-direction: column;
       border-radius: 6px;
-      height: 85vh;
+      height: 95vh;
       // width: 100%;
 
       &-header {
@@ -235,6 +242,25 @@
         width: 100%;
         padding-bottom: 0;
         text-align: center;
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+
+        .modal-close {
+          position: absolute;
+          height: 44px;
+          // width: 24px;
+          padding: 10px;
+          top: 2px;
+          right: 4px;
+          cursor: pointer;
+
+          &:hover {
+            svg {
+              fill: #ff9500;
+            }
+          }
+        }
       }
       .shopping-cart-items {
         padding-top: 10px;

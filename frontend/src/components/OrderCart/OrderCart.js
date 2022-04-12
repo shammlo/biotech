@@ -122,6 +122,21 @@ function OrderCart({ openCart, setOpenCart }) {
                             <div className="ordercart-container" dir="rtl">
                                 <div className="shopping-cart">
                                     <div className="shopping-cart-header">
+                                        <div className="modal-close" onClick={closeAll}>
+                                            <svg
+                                                stroke="currentColor"
+                                                fill="currentColor"
+                                                strokeWidth="0"
+                                                viewBox="0 0 512 512"
+                                                color="#02073E"
+                                                height="24px"
+                                                width="24px"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                style={{ color: 'rgb(2, 7, 62)' }}
+                                            >
+                                                <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
+                                            </svg>
+                                        </div>
                                         <i className="fa fa-shopping-cart cart-icon"></i>
                                         <span className="badge">{t('my-cart')}</span>
                                         {/* <div className="shopping-cart-total">
@@ -193,9 +208,14 @@ function OrderCart({ openCart, setOpenCart }) {
                                                     })
                                                 )}
                                             </ul>
-                                            <span className="item-quantity">{t('note')}</span>
+                                            {/* <span className="item-quantity">{t('note')}</span> */}
+                                            {/* <textarea
+                                                className="tebini"
+                                                onChange={(e) => setnote(e.target.value)}
+                                            /> */}
                                             <textarea
                                                 className="tebini"
+                                                placeholder={t('note')}
                                                 onChange={(e) => setnote(e.target.value)}
                                             />
                                             <button className="button" onClick={checkoutHandler} >
@@ -274,7 +294,7 @@ function OrderCart({ openCart, setOpenCart }) {
                             </div>
 
                             <div className="modal-note">
-                                <span>{t('note')}: {note}</span>
+                                <span> {note} : {t('note')}</span>
                             </div>
 
                             <div className="modal-buttons">

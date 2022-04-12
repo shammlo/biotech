@@ -133,6 +133,7 @@
   transform: translateY(-100%);
 }
 .wrapper .inside {
+  overflow-y: scroll;
   z-index: 9;
   background: #ff9500e9;
   width: 140px;
