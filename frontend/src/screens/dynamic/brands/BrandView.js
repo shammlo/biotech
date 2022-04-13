@@ -12,7 +12,7 @@ import cookies from 'js-cookie';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
+import { ToastContainer, toast } from 'react-toastify';
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -67,7 +67,13 @@ function BrandView() {
         // });
     }, []);
 
+    const notify = () =>
+        toast.success('Done', {
+            position: 'top-right',
+            autoClose: 1000,
+            hideProgressBar: false,
 
+        });
     useEffect(() => {
 
         const run = async () => {
@@ -110,14 +116,22 @@ function BrandView() {
 
     }, []);
 
-    const filteredProducts = brand.products?.filter((product) => {
-        if (
-            product.nameKR.toLowerCase().includes(search) ||
-            product.nameAR.toLowerCase().includes(search)
-        ) {
-            return product;
-        }
-    });
+    const filteredProducts = brand.products
+        ?.filter(
+            (value, index, self) =>
+                index ===
+                self.findIndex((data) => {
+                    return data._id === value._id;
+                })
+        )
+        .filter((product) => {
+            if (
+                product.nameKR.toLowerCase().includes(search) ||
+                product.nameAR.toLowerCase().includes(search)
+            ) {
+                return product;
+            }
+        });
     return (
         <>
             <Enav setSearch={setSearch} search={search} />
@@ -165,13 +179,13 @@ function BrandView() {
                 </div>
 
             </div>
-            <div className='category-cards'>
+            <div className="category-cards">
                 {filteredProducts?.map((e) => (
-                    // <Link to={`/brands/${e._id}`}>
-                    <CategoryCard cart={e} />
+                    // <Link to={/brands/${e._id}}>
+                    <CategoryCard cart={e} notify={notify} />
                     // </Link>
                 ))}
-
+                <ToastContainer />
             </div>
 
 

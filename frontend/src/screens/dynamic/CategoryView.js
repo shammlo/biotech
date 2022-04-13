@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import CategoryCard from '../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
@@ -45,7 +45,13 @@ function CategoryView() {
 
     }, [i18next.language])
 
+    const notify = () =>
+        toast.success('Done', {
+            position: 'top-right',
+            autoClose: 1000,
+            hideProgressBar: false,
 
+        });
 
     useEffect(() => {
 
@@ -178,13 +184,13 @@ function CategoryView() {
                 </div>
 
             </div>
-            <div className='category-cards'>
+            <div className="category-cards">
                 {filteredProducts?.map((e) => (
-                    // <Link to={`/brands/${e._id}`}>
-                    <CategoryCard cart={e} />
+                    // <Link to={/brands/${e._id}}>
+                    <CategoryCard cart={e} notify={notify} />
                     // </Link>
                 ))}
-
+                <ToastContainer />
             </div>
 
 

@@ -29,7 +29,7 @@ router
   .route("/:state/:id")
   .put(
     protect,
-    checkRole(["admin", "author", "supervisor", "warehouse"]),
+    checkRole(["admin", "author", "collector", "sales", "acounting"]),
     changeStateOfOrder
   );
 
@@ -38,7 +38,7 @@ router
   .post(protect, createOrUpdateCart)
   .get(
     protect,
-    checkRole(["admin", "author", "supervisor", "warehouse"]),
+    checkRole(["admin", "author", "collector", "sales", "acounting"]),
     allOrders
   );
 

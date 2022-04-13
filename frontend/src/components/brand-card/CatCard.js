@@ -8,7 +8,7 @@ function Card(props) {
     return (
 
         <div className="card">
-            <div className="face face1" style={{ width: "300px", height: "200px", borderRadius: "0" }}>
+            <div className="face face1" >
                 <div className="content">
                     <div className="icon" style={{ backgroundImage: `url(${props.logo})` }}>
                         <img src={`http://api.biotech.cf${props.logo}`} />
@@ -16,10 +16,10 @@ function Card(props) {
                     </div>
                 </div>
             </div>
-            <div className="face face2" style={{ width: "300px", height: "200px", borderRadius: "0" }}>
+            <div className="face face2" >
                 <div className="content">
 
-                    <a href="https://www.linkedin.com/in/adamdipinto/" target="_blank">  <h3>{currentLanguageCode === 'ar'
+                    <a href="#!" target="_blank">  <h3>{currentLanguageCode === 'ar'
                         ? props.nameAR
                         : props.nameKR}  </h3></a>
 

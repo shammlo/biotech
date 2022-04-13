@@ -15,7 +15,7 @@ function Card(props) {
             <div className="face face2">
                 <div className="content">
 
-                    <a href="https://www.linkedin.com/in/adamdipinto/" target="_blank">  <h3>{props.name}  </h3></a>
+                    <a href="#!" target="_blank">  <h3>{props.name}  </h3></a>
 
                     <p>{props.desc}</p>
                 </div>

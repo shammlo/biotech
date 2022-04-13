@@ -70,15 +70,16 @@ function OrderSure(props) {
     const add = async () => {
         // const token = 
         arr();
+        const fulldata = { ...data, note: props.note }
 
-        // console.log(data)
-        await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`,
-            data
-            , {
-                headers: {
-                    authorization: "Bearer " + token,
-                },
-            })
+        console.log(fulldata)
+        // await axios.post(`${process.env.REACT_APP_MAIN_URL}cart/`,
+        //     data
+        //     , {
+        //         headers: {
+        //             authorization: "Bearer " + token,
+        //         },
+        //     })
         // window.location.reload(false)
         // alert(" دروست کرا")
         // console.log(data)
