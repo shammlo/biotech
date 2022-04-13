@@ -94,7 +94,7 @@ function OrderCart({ openCart, setOpenCart }) {
             },
         });
 
-        toast.success(' دروست کرا', {
+        toast.success('Order Sent', {
             position: 'top-right',
             autoClose: 2000,
             hideProgressBar: false,
@@ -110,12 +110,14 @@ function OrderCart({ openCart, setOpenCart }) {
     const emptyCartHandler = () => {
         setCart([]);
         closeAll();
+
     };
     // ----------------------------------------------------------------
     return (
         <>
             {!sure && (
                 <>
+
                     <div className={`cart-order ${openCart ? 'show' : 'close'}`}>
                         {openCart && <div className="backdrop" onClick={closeAll}></div>}
                         <div className="cart_order-wrapper">
