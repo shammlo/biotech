@@ -19,7 +19,7 @@ function Card(props) {
             <div className="face face2" >
                 <div className="content">
 
-                    <a href="https://www.linkedin.com/in/adamdipinto/" target="_blank">  <h3>{currentLanguageCode === 'ar'
+                    <a href="#!" target="_blank">  <h3>{currentLanguageCode === 'ar'
                         ? props.nameAR
                         : props.nameKR}  </h3></a>
 

@@ -26,7 +26,7 @@ const createOrUpdateCart = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(400);
-    res.json({ general: "Server Error" });
+    res.json({ general: "Server Error", error: err.message });
   }
 };
 
