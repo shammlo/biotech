@@ -30,6 +30,26 @@ const createOrUpdateCart = async (req, res) => {
   }
 };
 
+// @desc update a note of a cart
+// @route Put api/cart/update-note/:id
+// @access Private admin/author
+const updateNote = async (req, res) => {
+  const { note } = req.body;
+
+  try {
+    const cart = await Cart.findOne({ _id: req.params.id });
+
+    cart.note = note;
+
+    const result = await cart.save();
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Server Error" });
+  }
+};
+
 // @desc    get all cart
 // @route   GET api/cart
 // @access  public
@@ -119,4 +139,5 @@ export {
   cartById,
   deleteCart,
   changeStateOfOrder,
+  updateNote,
 };

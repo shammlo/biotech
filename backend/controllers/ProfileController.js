@@ -32,6 +32,37 @@ const createOrUpdateProfile = async (req, res) => {
   }
 };
 
+// @desc Create Or update a profile
+// @route Post api/profile/ua/:id
+// @access Private
+const createOrUpdateProfileByAdmin = async (req, res) => {
+  const { name, address, phoneNumber, image, licenseNumber } = req.body;
+
+  const userId = req.params.id;
+
+  try {
+    const data = (await Profile.findOne({ user: userId })) || new Profile({});
+
+    data.name = name;
+    data.address = address;
+    data.phoneNumber = phoneNumber;
+    data.image = image;
+    data.licenseNumber = licenseNumber;
+    data.user = userId;
+
+    const userData = await User.findOne({ _id: userId });
+    userData.profile = data._id;
+    await userData.save();
+
+    const result = await data.save();
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Server Error" });
+  }
+};
+
 // @desc    get all profiles
 // @route   GET api/profile
 // @access  public
@@ -95,4 +126,10 @@ const profileCurrent = async (req, res) => {
   }
 };
 
-export { createOrUpdateProfile, allProfiles, profileById, profileCurrent };
+export {
+  createOrUpdateProfile,
+  allProfiles,
+  profileById,
+  profileCurrent,
+  createOrUpdateProfileByAdmin,
+};

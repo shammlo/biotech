@@ -5,6 +5,7 @@ import {
   cartById,
   deleteCart,
   changeStateOfOrder,
+  updateNote,
 } from "../controllers/CartController.js";
 import { checkRole, protect } from "../middlewares/AuthMiddlewares.js";
 
@@ -15,6 +16,15 @@ router
   .post(protect, createOrUpdateCart)
   .get(protect, cartById)
   .delete(deleteCart);
+
+router
+  .route("/update-note/:id")
+  .put(
+    protect,
+    checkRole(["admin", "author", "supervisor", "warehouse"]),
+    updateNote
+  );
+
 router
   .route("/:state/:id")
   .put(
