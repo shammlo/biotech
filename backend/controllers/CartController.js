@@ -9,7 +9,7 @@ const createOrUpdateCart = async (req, res) => {
 
   try {
     let total = 0;
-    await products.forEach(async (p) => {
+    await products?.forEach(async (p) => {
       const data = await Product.findById(p.product);
       total += data.price * p.quantity;
       p.total = data.price * p.quantity;
