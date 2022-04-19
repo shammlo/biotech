@@ -13,37 +13,24 @@ import i18next from 'i18next';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-
-
-
 // import required modules
 import { FreeMode, Navigation } from "swiper";
 import Enav from '../../components/navigation/Enav';
 
 function CategoryView() {
-
     const params = useParams();
     const id = params.id;
     const [brand, setbrand] = useState([]);
     const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
-
     const currentLanguageCode = i18next.language || 'kr';
-    console.log(currentLanguageCode)
+    // console.log(currentLanguageCode)
 
 
-    useEffect(() => {
-
-
-        console.log("asdfafad")
-
-
-    }, [i18next.language])
 
     const notify = () =>
         toast.success('Done', {
@@ -54,7 +41,6 @@ function CategoryView() {
         });
 
     useEffect(() => {
-
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${id}`);
@@ -65,7 +51,6 @@ function CategoryView() {
             }
         }
         run();
-
         // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
         //     setbrand(response.data)
         // });
@@ -77,7 +62,6 @@ function CategoryView() {
                 setbuttons(data)
             } catch (error) {
                 console.log(error)
-
             }
         }
         run();
@@ -86,9 +70,7 @@ function CategoryView() {
         // });
     }, []);
 
-
     useEffect(() => {
-
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${category}`);
@@ -99,7 +81,6 @@ function CategoryView() {
         }
         if (category !== '') {
             run();
-
         }
         // console.log(category)
         // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
@@ -111,25 +92,17 @@ function CategoryView() {
     useEffect(() => {
         if (window.innerWidth <= 1000) {
             setslides(6)
-
-
         }
         if (window.innerWidth <= 800) {
             setslides(4)
-
-
         }
         if (window.innerWidth <= 500) {
             setslides(3)
-
-
-
         }
-
-
     }, []);
 
     const filteredProducts = brand.products?.filter((product) => {
+        console.log(product)
         if (
             product.nameKR.toLowerCase().includes(search) ||
             product.nameAR.toLowerCase().includes(search)
@@ -165,9 +138,7 @@ function CategoryView() {
                                         : e.nameKR}</span>
                                     {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
-
                             ))}
-
                     </Swiper>
                     {/* {buttons &&
                         buttons.map((e) => (
