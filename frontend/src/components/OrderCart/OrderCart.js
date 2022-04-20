@@ -108,6 +108,7 @@ function OrderCart({ openCart, setOpenCart }) {
     };
 
     const emptyCartHandler = () => {
+        localStorage.removeItem("cart")
         setCart([]);
         closeAll();
 
