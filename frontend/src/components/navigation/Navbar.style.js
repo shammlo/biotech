@@ -68,6 +68,12 @@ export const Navbar = styled.div`
             padding-left: 20px;
             padding-bottom: 5px;
             position: relative;
+
+            form {
+                display: flex;
+                align-items: center;
+                width: 100%;
+            }
             .clear-search {
                 padding: 10px;
                 display: flex;
@@ -87,7 +93,7 @@ export const Navbar = styled.div`
 
             input {
                 width: 100%;
-                height: 40px;
+                height: 30px;
                 border: 1px solid #ff9300;
                 border-radius: 6px;
                 padding: 5px;

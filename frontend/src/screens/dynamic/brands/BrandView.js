@@ -1,50 +1,77 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
-
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { CardContext } from '../../../context/CardContext';
+// import Backdrop from '@mui/material/Backdrop';
 import axios from 'axios';
 import CategoryCard from '../../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
-import "./brandview.css"
+import './brandview.css';
 // import { useTranslation } from 'react-i18next';
 
 import cookies from 'js-cookie';
+// import Modal from '../../../components/modal/Modal';
+import Modal from '@mui/material/Modal';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ToastContainer, toast } from 'react-toastify';
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import Fade from '@mui/material/Fade';
 
 // import required modules
-import { FreeMode, Navigation } from "swiper";
+import { FreeMode, Navigation } from 'swiper';
 import Enav from '../../../components/navigation/Enav';
 
-function BrandView() {
+import Box from '@mui/material/Box';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
+function BrandView() {
     const params = useParams();
     const id = params.id;
     const [brand, setbrand] = useState([]);
     const [category, setcategory] = useState('');
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
-
+    // const [bought, setBought] = useState(false);
+    const [viewed, setViewed] = useState(false);
+    const [clickedItem, setClickedItem] = useState();
     const currentLanguageCode = cookies.get('i18next') || 'kr';
+    const [bought, setBought] = useState(false);
+    const [searchHist, setSearchHist] = useState('');
+    const { cart, setCart } = useContext(CardContext);
+    const [slides, setslides] = useState(8);
 
     useEffect(() => {
-
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}brand/${id}`);
-                setbrand(data)
+                // console.log(data.products);
+                // const newData = data.products.map((item) => {
+                //     return {
+                //         ...item,
+                //         bought: false,
+                //     };
+                // });
+                setbrand(data);
                 // console.log(brand)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         run();
 
         // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
@@ -55,65 +82,62 @@ function BrandView() {
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category`);
-                setbuttons(data)
+                setbuttons(data);
             } catch (error) {
-                console.log(error)
-
+                console.log(error);
             }
-        }
+        };
         run();
         // axios.get(`http://localhost:5555/api/category`).then((response) => {
         //     setbuttons(response.data)
         // });
     }, []);
 
-    const notify = () =>
+    const notify = (alert) => {
+        if (alert === 'warning') {
+            return toast.warning('Already in cart', {
+                position: 'top-right',
+                autoClose: 1000,
+                hideProgressBar: false,
+            });
+        }
         toast.success('Done', {
             position: 'top-right',
             autoClose: 1000,
             hideProgressBar: false,
-
         });
+    };
     useEffect(() => {
-
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`);
-                setbrand({ ...brand, products: data })
+                const { data } = await axios.get(
+                    `${process.env.REACT_APP_MAIN_URL}product/${id}/${category}`
+                );
+                console.log(data);
+                setbrand({ ...brand, products: data });
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         if (category !== '') {
             run();
-
         }
         // console.log(category)
         // axios.get(`http://localhost:5555/api/product/${id}/${category}`).then((response) => {
         //     setbrand({ ...brand, products: response.data })
         // });
-    }, [category]);
-    const [slides, setslides] = useState(8);
+    }, [category, id, brand]);
 
     useEffect(() => {
         if (window.innerWidth <= 1000) {
-            setslides(6)
-
-
+            setslides(6);
         }
         if (window.innerWidth <= 800) {
-            setslides(4)
-
-
+            setslides(4);
         }
         if (window.innerWidth <= 500) {
-            setslides(3)
-
-
-
+            setslides(3);
         }
-
-
     }, []);
 
     const filteredProducts = brand.products
@@ -125,17 +149,38 @@ function BrandView() {
                 })
         )
         .filter((product) => {
+            // console.log(product);
+
+            // if (product.nameKR) console.log(search);
+            // console.log(product.nameKR);
             if (
                 product.nameKR.toLowerCase().includes(search) ||
-                product.nameAR.toLowerCase().includes(search)
+                product.nameAR.toLowerCase().includes(search) ||
+                product.nameKR.toLowerCase() === search.toLowerCase() ||
+                product.nameAR.toLowerCase() === search.toLowerCase()
             ) {
                 return product;
             }
         });
+    const closeModal = () => {
+        setViewed(false);
+    };
+    const addToViewed = (id) => {
+        // console.log(id);
+        const finding = brand.products.find((product) => product._id === id);
+        setClickedItem(finding);
+        setViewed(!viewed);
+    };
+
+    useEffect(() => {
+        const searchs = brand?.products?.map((product) => product.nameKR);
+        setSearchHist(searchs);
+    }, [brand?.products]);
     return (
         <>
-            <Enav setSearch={setSearch} search={search} />
-            <div className='category-brand '>
+            <Enav setSearch={setSearch} search={search} searchHist={searchHist} />
+
+            <div className="category-brand ">
                 <div className="multi-button">
                     <Swiper
                         slidesPerView={slides}
@@ -146,23 +191,21 @@ function BrandView() {
                             clickable: true,
                         }}
                         modules={[FreeMode]}
-                        className="mySwiper" >
+                        className="mySwiper"
+                    >
                         {buttons &&
                             buttons.map((e) => (
-
-                                <SwiperSlide style={{ width: "fit-content" }} className="btn btn-cut"
-                                    onClick={() =>
-                                        setcategory(e._id)
-
-                                    }>
-                                    <span className="a">{currentLanguageCode === 'ar'
-                                        ? e.nameAR
-                                        : e.nameKR}</span>
+                                <SwiperSlide
+                                    style={{ width: 'fit-content' }}
+                                    className="btn btn-cut"
+                                    onClick={() => setcategory(e._id)}
+                                >
+                                    <span className="a">
+                                        {currentLanguageCode === 'ar' ? e.nameAR : e.nameKR}
+                                    </span>
                                     {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
-
                             ))}
-
                     </Swiper>
                     {/* {buttons &&
                         buttons.map((e) => (
@@ -175,22 +218,62 @@ function BrandView() {
                             </button>
                         ))
                     } */}
-
                 </div>
-
             </div>
             <div className="category-cards">
                 {filteredProducts?.map((e) => (
                     // <Link to={/brands/${e._id}}>
-                    <CategoryCard cart={e} notify={notify} />
+                    <CategoryCard paramID={id} cart={e} notify={notify} addToViewed={addToViewed} />
                     // </Link>
                 ))}
                 <ToastContainer />
+
+                <Modal
+                    open={viewed}
+                    onClose={closeModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    closeAfterTransition
+                    // BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 400,
+                    }}
+                >
+                    <Fade in={viewed}>
+                        <Box className="modal-overlay">
+                            <div className="modal-content">
+                                <div className="product">
+                                    <h1>{clickedItem?.nameKR}</h1>
+
+                                    <p>{clickedItem?.descriptionKR}</p>
+                                    <div
+                                        className="top prod-img"
+                                        style={{
+                                            backgroundImage: `url(http://api.biotech.cf${clickedItem?.image})`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </Box>
+                    </Fade>
+                </Modal>
+                {/* <Modal show={viewed} closeAll={closeAll}>
+                    {viewed ? (
+                        <div className="product">
+                            <h1>{clickedItem.nameKR}</h1>
+                            <p>{clickedItem.descriptionKR}</p>
+                            <div
+                                className="top prod-img"
+                                style={{
+                                    backgroundImage: `url(http://api.biotech.cf${clickedItem.image})`,
+                                }}
+                            ></div>
+                        </div>
+                    ) : null}
+                </Modal> */}
             </div>
-
-
         </>
-    )
+    );
 }
 
-export default BrandView
+export default BrandView;

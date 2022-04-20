@@ -57,7 +57,6 @@ function OrderCart({ openCart, setOpenCart }) {
         setCart((prev) => prev.filter((item) => item !== prev[index]));
     };
 
-
     const updateFieldChanged = (index) => (e) => {
         // name = e.target.name //key
 
@@ -103,22 +102,20 @@ function OrderCart({ openCart, setOpenCart }) {
             draggable: true,
             progress: undefined,
         });
-        setCart([])
+        setCart([]);
         closeAll();
     };
 
     const emptyCartHandler = () => {
-        localStorage.removeItem("cart")
+        localStorage.removeItem('cart');
         setCart([]);
         closeAll();
-
     };
     // ----------------------------------------------------------------
     return (
         <>
             {!sure && (
                 <>
-
                     <div className={`cart-order ${openCart ? 'show' : 'close'}`}>
                         {openCart && <div className="backdrop" onClick={closeAll}></div>}
                         <div className="cart_order-wrapper">
@@ -203,8 +200,9 @@ function OrderCart({ openCart, setOpenCart }) {
                                                                 <span className="item-price">
                                                                     {isNaN(e.quantity)
                                                                         ? 'price'
-                                                                        : `$ ${e.quantity * e.price
-                                                                        }`}
+                                                                        : `$ ${
+                                                                              e.quantity * e.price
+                                                                          }`}
                                                                 </span>
                                                             </li>
                                                         );
@@ -221,15 +219,13 @@ function OrderCart({ openCart, setOpenCart }) {
                                                 placeholder={t('note')}
                                                 onChange={(e) => setnote(e.target.value)}
                                             />
-                                            <button className="button" onClick={checkoutHandler} >
+                                            <button className="button" onClick={checkoutHandler}>
                                                 {t('checkout')}
                                             </button>
                                             <button
                                                 className="button"
                                                 style={{ background: 'grey' }}
-                                                onClick={
-                                                    emptyCartHandler
-                                                }
+                                                onClick={emptyCartHandler}
                                             >
                                                 {t('emptycart')}
                                             </button>
@@ -297,7 +293,10 @@ function OrderCart({ openCart, setOpenCart }) {
                             </div>
 
                             <div className="modal-note">
-                                <span> {note} : {t('note')}</span>
+                                <span>
+                                    {' '}
+                                    {note} : {t('note')}
+                                </span>
                             </div>
 
                             <div className="modal-buttons">

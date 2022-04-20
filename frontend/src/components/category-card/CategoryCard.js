@@ -1,34 +1,76 @@
-import React, { useContext } from 'react'
-import "./categoryCard.css"
-import { CardContext } from "../../context/CardContext";
-import { GrCart } from "react-icons/gr";
+import React, { useContext, useState, useEffect } from 'react';
+import './categoryCard.css';
+import { CardContext } from '../../context/CardContext';
+import { GrCart } from 'react-icons/gr';
 import cookies from 'js-cookie';
+import Modal from '../modal/Modal';
 
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 function CategoryCard(props) {
-    const { cart, setCart } = useContext(CardContext)
+    const { cart, setCart } = useContext(CardContext);
     const currentLanguageCode = cookies.get('i18next') || 'en';
+    const [bought, setBought] = useState(false);
+    const [classes, setClasses] = useState('');
+    // console.log(props.cart);
+    // console.log(cart);
 
     // console.log(props.cart)
+    const addToCart = () => {
+        if (bought) {
+            props.notify('warning');
+            return;
+        }
+        // const
+        localStorage.setItem(
+            'cart',
+            JSON.stringify([
+                ...cart,
+                {
+                    ...props.cart,
+                },
+            ])
+        );
+        // props.addToStore(props.cart._id);
+        setCart([...cart, props.cart]);
+        props.notify();
+        setBought(true);
+    };
+
+    useEffect(() => {
+        let result = cart.map((item) => item._id).find((fill) => fill === props.cart._id);
+        // console.log(result);
+        if (result) {
+            setBought(true);
+            setClasses('buy bought');
+        } else {
+            setBought(false);
+            setClasses('buy');
+        }
+    }, [props.cart._id, cart]);
 
     return (
         <>
-
-
             <div className="wrapper ">
                 <div className="containera">
-                    <div className="top" style={{ backgroundImage: `url(http://api.biotech.cf${props.cart.image})` }}>
-
-
-                    </div>
+                    <div
+                        className="top"
+                        onClick={() => props.addToViewed(props.cart._id)}
+                        style={{
+                            backgroundImage: `url(http://api.biotech.cf${props.cart.image})`,
+                            cursor: 'pointer',
+                        }}
+                    ></div>
                     <div className="bottom">
                         <div className="left">
                             <div className="details">
-                                <h1 style={{ fontSize: "20px" }}>{props.cart.nameKR}</h1>
+                                <h1 style={{ fontSize: '20px' }}>{props.cart.nameKR}</h1>
                                 <p>${props.cart.price}</p>
                             </div>
                             {/* <button style={{ width: "200px" }} value="add to card" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]) }} /> */}
-                            <div className="buy" onClick={() => { localStorage.setItem("cart", JSON.stringify([...cart, props.cart])); setCart([...cart, props.cart]); props.notify() }}><GrCart style={{ zoom: "220%", margin: "10px 10px" }} /></div>
+                            <div className={`buy ${classes}`} onClick={addToCart}>
+                                {/* className={`buy ${bought ? 'bought' : ''}`} */}
+                                <GrCart style={{ zoom: '220%', margin: '10px 10px' }} />
+                            </div>
                         </div>
                         <div className="right">
                             {/* <div className="done"><i className="material-icons">done</i></div> */}
@@ -41,7 +83,9 @@ function CategoryCard(props) {
                     </div>
                 </div>
                 <div className="inside">
-                    <div className="icon" ><AiOutlineInfoCircle style={{ zoom: "200%" }} /></div>
+                    <div className="icon">
+                        <AiOutlineInfoCircle style={{ zoom: '200%' }} />
+                    </div>
                     <div className="contents">
                         <p>
                             {currentLanguageCode === 'ar'
@@ -52,7 +96,7 @@ function CategoryCard(props) {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default CategoryCard
+export default CategoryCard;

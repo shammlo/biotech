@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import CategoryCard from '../../components/category-card/CategoryCard';
 // import Nav from '../../../components/navigation/Nav';
-import "./brands/brandview.css"
+import './brands/brandview.css';
 // import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 
 // import cookies from 'js-cookie';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
 // import required modules
-import { FreeMode, Navigation } from "swiper";
+import { FreeMode, Navigation } from 'swiper';
 import Enav from '../../components/navigation/Enav';
 
 function CategoryView() {
@@ -28,28 +32,41 @@ function CategoryView() {
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
     const currentLanguageCode = i18next.language || 'kr';
+
     // console.log(currentLanguageCode)
 
+    const [searchHist, setSearchHist] = useState('');
 
+    const [viewed, setViewed] = useState(false);
 
-    const notify = () =>
+    const [clickedItem, setClickedItem] = useState();
+
+    // console.log(currentLanguageCode)
+
+    const notify = (alert) => {
+        if (alert === 'warning') {
+            return toast.warning('Already in cart', {
+                position: 'top-right',
+                autoClose: 1000,
+                hideProgressBar: false,
+            });
+        }
         toast.success('Done', {
             position: 'top-right',
             autoClose: 1000,
             hideProgressBar: false,
-
         });
-
+    };
     useEffect(() => {
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${id}`);
-                setbrand(data)
+                setbrand(data);
                 // console.log(brand)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         run();
         // axios.get(`http://localhost:5555/api/brand/${id}`).then((response) => {
         //     setbrand(response.data)
@@ -59,26 +76,35 @@ function CategoryView() {
         const run = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category`);
-                setbuttons(data)
+                setbuttons(data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
+                console.log(error);
             }
-        }
+        };
         run();
         // axios.get(`http://localhost:5555/api/category`).then((response) => {
         //     setbuttons(response.data)
         // });
     }, []);
 
+    const addToViewed = (id) => {
+        // console.log(id);
+        const finding = brand.products.find((product) => product._id === id);
+        setClickedItem(finding);
+        setViewed(!viewed);
+    };
     useEffect(() => {
         const run = async () => {
             try {
-                const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}category/${category}`);
-                setbrand(data)
+                const { data } = await axios.get(
+                    `${process.env.REACT_APP_MAIN_URL}category/${category}`
+                );
+                setbrand(data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
+        };
         if (category !== '') {
             run();
         }
@@ -91,29 +117,46 @@ function CategoryView() {
 
     useEffect(() => {
         if (window.innerWidth <= 1000) {
-            setslides(6)
+            setslides(6);
         }
         if (window.innerWidth <= 800) {
-            setslides(4)
+            setslides(4);
         }
         if (window.innerWidth <= 500) {
-            setslides(3)
+            setslides(3);
+            setslides(6);
+        }
+        if (window.innerWidth <= 800) {
+            setslides(4);
+        }
+        if (window.innerWidth <= 500) {
+            setslides(3);
         }
     }, []);
 
+    useEffect(() => {
+        // console.log(brand.products);
+        const searchs = brand?.products?.map((product) => product.nameKR);
+        setSearchHist(searchs);
+        // console.log(brand);
+    }, [brand?.products]);
+
     const filteredProducts = brand.products?.filter((product) => {
-        console.log(product)
+        // console.log(product)
+        // console.log(product)
         if (
             product.nameKR.toLowerCase().includes(search) ||
-            product.nameAR.toLowerCase().includes(search)
+            product.nameAR.toLowerCase().includes(search) ||
+            product.nameKR.toLowerCase() === search.toLowerCase() ||
+            product.nameAR.toLowerCase() === search.toLowerCase()
         ) {
             return product;
         }
     });
     return (
         <>
-            <Enav setSearch={setSearch} search={search} />
-            <div className='category-brand '>
+            <Enav setSearch={setSearch} search={search} searchHist={searchHist} />
+            <div className="category-brand ">
                 <div className="multi-button">
                     <Swiper
                         slidesPerView={slides}
@@ -124,18 +167,18 @@ function CategoryView() {
                             clickable: true,
                         }}
                         modules={[FreeMode]}
-                        className="mySwiper" >
+                        className="mySwiper"
+                    >
                         {buttons &&
                             buttons.map((e) => (
-
-                                <SwiperSlide style={{ width: "fit-content" }} className="btn btn-cut"
-                                    onClick={() =>
-                                        setcategory(e._id)
-
-                                    }>
-                                    <span className="a">{currentLanguageCode === 'ar'
-                                        ? e.nameAR
-                                        : e.nameKR}</span>
+                                <SwiperSlide
+                                    style={{ width: 'fit-content' }}
+                                    className="btn btn-cut"
+                                    onClick={() => setcategory(e._id)}
+                                >
+                                    <span className="a">
+                                        {currentLanguageCode === 'ar' ? e.nameAR : e.nameKR}
+                                    </span>
                                     {/* <span className="b"><i className="fas fa-cut"></i></span> */}
                                 </SwiperSlide>
                             ))}
@@ -151,22 +194,18 @@ function CategoryView() {
                             </button>
                         ))
                     } */}
-
                 </div>
-
             </div>
             <div className="category-cards">
                 {filteredProducts?.map((e) => (
                     // <Link to={/brands/${e._id}}>
-                    <CategoryCard cart={e} notify={notify} />
+                    <CategoryCard cart={e} notify={notify} addToViewed={addToViewed} />
                     // </Link>
                 ))}
                 <ToastContainer />
             </div>
-
-
         </>
-    )
+    );
 }
 
-export default CategoryView
+export default CategoryView;
