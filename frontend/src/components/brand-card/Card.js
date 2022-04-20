@@ -3,7 +3,7 @@ import "./card.css"
 function Card(props) {
     return (
 
-        <div className="card">
+        <div className="card ">
             <div className="face face1">
                 <div className="content">
                     <div className="icon" style={{ backgroundImage: `url(${props.logo})` }}>

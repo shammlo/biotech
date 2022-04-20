@@ -5,6 +5,7 @@ import Brands from './brands/Brands'
 import Categories from './categories/Categories'
 import Contact from './contact/Contact'
 import Header from './Header/Header'
+import Map from './map/Map'
 
 function Home() {
     return (
@@ -13,6 +14,7 @@ function Home() {
             <Brands />
             <Categories />
             <About />
+            <Map />
             <Contact />
         </div>
     )

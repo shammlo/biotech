@@ -41,8 +41,8 @@ export const Navbar = styled.div`
                     color: ${({ fg }) => fg};
                     text-align: center;
                     font-size: 20px;
-                    padding: 8px 15px;
-                    padding: 14px 36px;
+                    /* padding: 8px 15px; */
+                    padding: 14px 26px;
 
                     text-decoration: none;
                     text-align: center;

@@ -16,7 +16,7 @@ function Categories() {
         });
     }, []);
     return (
-        <div id='brand-section' className='brands-section' style={{ marginBottom: "5%" }}>
+        <div className='brands-section' style={{ marginBottom: "5%" }}>
             <div className='container-brand '>
                 <h1 className='titleHead'>{t('categories')}</h1>
 

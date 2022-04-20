@@ -1,12 +1,9 @@
-.contact-section2 {
+.contact-section {
   width: 100%;
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
   /* border-radius: 40px; */
-  /* border-top-left-radius: 40px; */
-  /* border-top-right-radius: 40px; */
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
   background-color: #ff9500;
   color: white;
 }
@@ -16,34 +13,36 @@
 
   /* margin-top: -100px; */
 }
-.contact-logo {
-  /* background-color: #ffff;
+/* .contact-logo { */
+/* background-color: #ffff;
   border-radius: 30px;
   width: 15%;
   margin-top: -30px; */
-  margin-top: 80px;
-}
+/* margin-top: 80px; */
+/* }
 .contact-logo img {
   width: 100%;
-}
+} */
 .contact-container {
   height: 80%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: center; */
 }
 
-.contact-content2 {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
+.contact-content {
+  text-align: center;
+  font-size: 1.5vmax;
+  height: 15%;
+  /* height: 40%; */
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .contact-map {
-  width: 45%;
-  height: 50%;
+  width: 90%;
+  height: 85%;
 }
 .contact-map iframe {
   width: 100%;
@@ -52,57 +51,17 @@
   border: #ff9500 solid 2px;
 }
 
-.contact-card-parent {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100%;
-}
-.contact-card {
-  width: auto;
-  display: flex;
-  justify-content: space-between;
-}
-.card-number {
-  margin: auto 0;
-}
-.card-icon {
-  zoom: 150%;
-  border: white solid 2px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-}
-
-.cls-1 {
-  fill: #fff;
-}
-.cls-2 {
-  fill: #ff9300;
-}
-.contact-container {
-  flex: 1;
-  /* height: calc(100vh - 100px); */
-}
-
 .contact-section {
   /* height: unset; */
   /* min-height: 100vh; */
 }
 @media (max-width: 950px) {
-  .contact-container {
-    /* height: calc(100vh - 100px); */
-    /* min-height: calc(100vh); */
-    padding-bottom: 20px;
-  }
-  .contact-content {
+  /* .contact-content {
     gap: 20px;
     flex: 1;
     width: 100%;
     margin-bottom: 100px;
-  }
+  } */
   .contact-card-parent {
     width: auto;
     /* padding: 10px 0; */
