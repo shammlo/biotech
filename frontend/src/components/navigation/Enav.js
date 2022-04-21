@@ -104,7 +104,7 @@ function Enav({ setSearch, search, searchHist }) {
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
-                                        label="Search input"
+                                        label="Search for product"
                                         InputProps={{
                                             ...params.InputProps,
                                             type: 'search',

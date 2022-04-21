@@ -12,6 +12,9 @@ import i18next from 'i18next';
 // import cookies from 'js-cookie';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -153,6 +156,10 @@ function CategoryView() {
             return product;
         }
     });
+
+    const closeModal = () => {
+        setViewed(false);
+    };
     return (
         <>
             <Enav setSearch={setSearch} search={search} searchHist={searchHist} />
@@ -203,6 +210,36 @@ function CategoryView() {
                     // </Link>
                 ))}
                 <ToastContainer />
+
+                <Modal
+                    open={viewed}
+                    onClose={closeModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    closeAfterTransition
+                    // BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 400,
+                    }}
+                >
+                    <Fade in={viewed}>
+                        <Box className="modal-overlay">
+                            <div className="modal-content">
+                                <div className="product">
+                                    <h1>{clickedItem?.nameKR}</h1>
+
+                                    <p>{clickedItem?.descriptionKR}</p>
+                                    <div
+                                        className="top prod-img"
+                                        style={{
+                                            backgroundImage: `url(http://api.biotech.cf${clickedItem?.image})`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </Box>
+                    </Fade>
+                </Modal>
             </div>
         </>
     );
