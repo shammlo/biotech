@@ -223,7 +223,7 @@ function BrandView() {
             <div className="category-cards">
                 {filteredProducts?.map((e) => (
                     // <Link to={/brands/${e._id}}>
-                    <CategoryCard paramID={id} cart={e} notify={notify} addToViewed={addToViewed} />
+                    <CategoryCard loading="lazy" paramID={id} cart={e} notify={notify} addToViewed={addToViewed} />
                     // </Link>
                 ))}
                 <ToastContainer />
