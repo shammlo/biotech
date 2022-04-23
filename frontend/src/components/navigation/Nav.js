@@ -84,16 +84,7 @@ function Nav() {
                                 {t('home')}
                             </a>
                         </li>
-                        <li>
-                            <a
-                                href="#about-section"
-                                onClick={() => {
-                                    menuHandler();
-                                }}
-                            >
-                                {t('about_us')}
-                            </a>
-                        </li>
+
 
                         <li>
                             <a
@@ -105,7 +96,26 @@ function Nav() {
                                 {t('brands')}
                             </a>
                         </li>
-
+                        <li>
+                            <a
+                                href="#about-section"
+                                onClick={() => {
+                                    menuHandler();
+                                }}
+                            >
+                                {t('about_us')}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#map-section"
+                                onClick={() => {
+                                    menuHandler();
+                                }}
+                            >
+                                {t('locations')}
+                            </a>
+                        </li>
                         <li>
                             <a
                                 href="#contact-section"

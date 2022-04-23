@@ -1,6 +1,8 @@
 .ccontainer .card {
   position: relative;
-  border-radius: 10px;
+  margin-bottom: -100px;
+
+  /* border-radius: 10px; */
 }
 
 .ccontainer .card .icon {

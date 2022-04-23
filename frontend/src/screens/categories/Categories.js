@@ -16,7 +16,7 @@ function Categories() {
         });
     }, []);
     return (
-        <div id='brand-section' className='brands-section' style={{ marginBottom: "5%" }}>
+        <div className='brands-section' style={{ marginBottom: "5%" }}>
             <div className='container-brand '>
                 <h1 className='titleHead'>{t('categories')}</h1>
 
@@ -25,7 +25,7 @@ function Categories() {
                     {
                         brand.map((e) => (
                             <Link key={e._id} to={`/category/${e._id}`}>
-
+                                {/* <p>{e._id}</p> */}
                                 <CatCard
                                     nameKR={e.nameKR}
                                     nameAR={e.nameAR}

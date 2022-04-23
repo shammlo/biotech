@@ -1,73 +1,74 @@
 .category-brand {
-  margin-top: 70px;
-  height: 150px;
+    margin-top: 70px;
+    height: 150px;
 }
 
 .multi-button {
-  background-color: #ff9500;
-  color: rgb(255, 255, 255);
-  border-radius: 10px;
-  z-index: 1;
+    background-color: #ff9500;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    z-index: 1;
 }
 .btn {
-  margin: 0;
-  padding: 0;
-  border: #ff9500 solid 4px;
-  font-family: "Francois One", sans-serif;
-  font-size: 20px;
-  height: 60px;
-  width: 70px;
-  background: rgba(255, 255, 255, 0.109);
-  transition: all ease 0.3s;
-  text-align: center;
-  border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    border: #ff9500 solid 4px;
+    font-family: 'Francois One', sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 70px;
+    background: rgba(255, 255, 255, 0.109);
+    transition: all ease 0.3s;
+    text-align: center;
+    border-radius: 20px;
 }
 .btn:hover {
-  background-color: rgba(255, 255, 255, 0.109);
+    background-color: rgba(255, 255, 255, 0.109);
 }
 .btn .a {
-  display: inline;
-  transition: all ease 0.3s;
+    display: inline;
+    transition: all ease 0.3s;
 }
 .btn .b {
-  display: none;
-  transition: all ease 0.3s;
+    display: none;
+    transition: all ease 0.3s;
 }
 .btn:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 .btn:hover .a {
-  display: inline;
+    display: inline;
 }
 .btn:hover .b {
-  display: inline;
+    display: inline;
 }
 .btn:active {
-  transform: scale(0.95);
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(0.95);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .category-cards {
-  width: 100%;
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding-bottom: 40px;
-  grid-template-columns: auto auto auto auto;
+    width: 100%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding-bottom: 40px;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 40px;
 }
 
 @media (max-width: 1250px) {
-  .category-cards {
-    grid-template-columns: auto auto auto;
-  }
+    .category-cards {
+        grid-template-columns: auto auto auto;
+    }
 }
 @media (max-width: 920px) {
-  .category-cards {
-    grid-template-columns: auto auto;
-  }
+    .category-cards {
+        grid-template-columns: auto auto;
+    }
 }
 @media (max-width: 620px) {
-  .category-cards {
-    grid-template-columns: auto;
-  }
+    .category-cards {
+        grid-template-columns: auto;
+    }
 }
