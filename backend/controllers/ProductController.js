@@ -27,6 +27,18 @@ const createOrUpdateProduct = async (req, res) => {
   try {
     const data =
       (await Product.findOne({ _id: req.params.id })) || new Product({});
+    if (req.params.id) {
+      await Brand.updateOne(
+        { _id: data.brand },
+        { $pull: { products: req.params.id } }
+      );
+      data.category.forEach(async (c) => {
+        await Category.updateOne(
+          { _id: c },
+          { $pull: { products: req.params.id } }
+        );
+      });
+    }
 
     data.album = [];
     data.category = [];
@@ -42,17 +54,19 @@ const createOrUpdateProduct = async (req, res) => {
     data.category = category;
     data.state = state;
 
-    if (!req.params.id) {
-      const brandData = await Brand.findOne({ _id: brand });
-      brandData.products.push(data._id);
-      await brandData.save();
+    await Brand.findOneAndUpdate(
+      { _id: data.brand },
+      { $addToSet: { products: data._id } },
+      { new: true }
+    );
 
-      category.forEach(async (c) => {
-        const cateData = await Category.findOne({ _id: c });
-        cateData.products.push(data._id);
-        await cateData.save();
-      });
-    }
+    category.forEach(async (c) => {
+      await Category.findOneAndUpdate(
+        { _id: c },
+        { $addToSet: { products: data._id } },
+        { new: true }
+      );
+    });
 
     const result = await data.save();
     res.json(result);
