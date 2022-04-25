@@ -35,20 +35,16 @@ function CategoryView() {
     const [buttons, setbuttons] = useState([]);
     const [search, setSearch] = useState('');
     const currentLanguageCode = i18next.language || 'kr';
-
     // console.log(currentLanguageCode)
-
     const [searchHist, setSearchHist] = useState('');
-
     const [viewed, setViewed] = useState(false);
-
     const [clickedItem, setClickedItem] = useState();
 
     // console.log(currentLanguageCode)
 
-    const notify = (alert) => {
+    const notify = (alert, message) => {
         if (alert === 'warning') {
-            return toast.warning('Already in cart', {
+            return toast.warning(message, {
                 position: 'top-right',
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -229,12 +225,12 @@ function CategoryView() {
                                     <h1>{clickedItem?.nameKR}</h1>
 
                                     <p>{clickedItem?.descriptionKR}</p>
-                                    <div
-                                        className="top prod-img"
-                                        style={{
-                                            backgroundImage: `url(http://api.biotech.cf${clickedItem?.image})`,
-                                        }}
-                                    ></div>
+                                    <div className="top prod-img">
+                                        <img
+                                            src={`http://api.biotech.cf${clickedItem?.image}`}
+                                            alt=""
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </Box>

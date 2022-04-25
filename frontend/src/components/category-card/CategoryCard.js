@@ -6,6 +6,7 @@ import cookies from 'js-cookie';
 import Modal from '../modal/Modal';
 
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import Cookies from 'js-cookie';
 function CategoryCard(props) {
     const { cart, setCart } = useContext(CardContext);
     const currentLanguageCode = cookies.get('i18next') || 'en';
@@ -15,9 +16,22 @@ function CategoryCard(props) {
     // console.log(cart);
 
     // console.log(props.cart)
+
+    const [token, setToken] = useState();
+
+    useEffect(() => {
+        const session = Cookies.get('biotechToken');
+        if (session) {
+            setToken(session);
+        }
+    }, [token]);
     const addToCart = () => {
+        if (!token) {
+            props.notify('warning', 'Please log in to buy this item!');
+            return;
+        }
         if (bought) {
-            props.notify('warning');
+            props.notify('warning', 'Already in cart!');
             return;
         }
         // const
@@ -39,14 +53,14 @@ function CategoryCard(props) {
     useEffect(() => {
         let result = cart.map((item) => item._id).find((fill) => fill === props.cart._id);
         // console.log(result);
-        if (result) {
+        if (result && token) {
             setBought(true);
             setClasses('buy bought');
         } else {
             setBought(false);
             setClasses('buy');
         }
-    }, [props.cart._id, cart]);
+    }, [props.cart._id, cart, token]);
 
     return (
         <>

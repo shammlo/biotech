@@ -26,7 +26,6 @@ import { FreeMode, Navigation } from 'swiper';
 import Enav from '../../../components/navigation/Enav';
 
 import Box from '@mui/material/Box';
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -93,9 +92,9 @@ function BrandView() {
         // });
     }, []);
 
-    const notify = (alert) => {
+    const notify = (alert, message) => {
         if (alert === 'warning') {
-            return toast.warning('Already in cart', {
+            return toast.warning(message, {
                 position: 'top-right',
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -246,31 +245,32 @@ function BrandView() {
                                     <h1>{clickedItem?.nameKR}</h1>
 
                                     <p>{clickedItem?.descriptionKR}</p>
-                                    <div
-                                        className="top prod-img"
-                                        style={{
-                                            backgroundImage: `url(http://api.biotech.cf${clickedItem?.image})`,
-                                        }}
-                                    ></div>
+                                    <div className="top prod-img">
+                                        <img
+                                            src={`http://api.biotech.cf${clickedItem?.image}`}
+                                            alt=""
+                                        />
+                                    </div>
+                                </div>
+                                <div className="modal-close" onClick={closeModal}>
+                                    <svg
+                                        stroke="currentColor"
+                                        fill="currentColor"
+                                        strokeWidth="0"
+                                        viewBox="0 0 512 512"
+                                        color="#02073E"
+                                        height="24px"
+                                        width="24px"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        style={{ color: 'rgb(2, 7, 62)' }}
+                                    >
+                                        <path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"></path>
+                                    </svg>
                                 </div>
                             </div>
                         </Box>
                     </Fade>
                 </Modal>
-                {/* <Modal show={viewed} closeAll={closeAll}>
-                    {viewed ? (
-                        <div className="product">
-                            <h1>{clickedItem.nameKR}</h1>
-                            <p>{clickedItem.descriptionKR}</p>
-                            <div
-                                className="top prod-img"
-                                style={{
-                                    backgroundImage: `url(http://api.biotech.cf${clickedItem.image})`,
-                                }}
-                            ></div>
-                        </div>
-                    ) : null}
-                </Modal> */}
             </div>
         </>
     );

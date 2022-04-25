@@ -310,6 +310,7 @@ $modal-width: 85vw;
     width: 100%;
     height: 100%;
     background-color: rgba(34, 41, 47, 0.5);
+    color: #b9bcc2;
 }
 
 .modal.closed,
@@ -351,7 +352,8 @@ $modal-width: 85vw;
     }
 }
 
-.css-79ws1d-MuiModal-root {
+.css-79ws1d-MuiModal-root,
+.MuiModal-root {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,29 +364,43 @@ $modal-width: 85vw;
         transition: all 0.3s ease-out;
         border-radius: 6px;
         font-size: 1.1rem;
-        padding: 10px;
+        padding: 5px;
         color: #000;
+        // max-width: 65vw;
+        border-color: #fff !important;
         // min-width: 650px;
 
+        // @media screen and (max-width: 950px) {
+        //     width: 90vw;
+        //     height: 90vh;
+        // }
         .modal-content {
-            padding: 10px;
-            max-height: 70vh;
-            max-width: 35vw;
+            padding: 15px;
+            height: 80vh;
+            width: 70vw;
             overflow-y: scroll;
             overflow-x: hidden;
+            position: relative;
 
             @media screen and (max-width: 950px) {
-                max-width: 80vw;
-                max-height: 80vh;
+                width: 85vw;
+                height: 85vh;
 
                 /* max-height: 80vh; */
             }
         }
         .modal-close {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: 6px;
+            right: 6px;
             cursor: pointer;
+            width: 30px;
+            height: 30px;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
 
             &:hover {
                 svg {
@@ -401,6 +417,22 @@ $modal-width: 85vw;
             align-items: center;
             text-align: center;
             /* overflow-y: scroll; */
+        }
+
+        .prod-img {
+            width: 1000px;
+            height: 1000px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            @media screen and (max-width: 950px) {
+                width: 95vw;
+            }
+        }
+        .prod-img img {
+            width: 100%;
+            height: 100%;
         }
     }
 }

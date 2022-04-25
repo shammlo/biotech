@@ -233,18 +233,6 @@
     text-align: center;
     /* overflow-y: scroll; */
 }
-.prod-img {
-    background-size: 315px;
-    background-image: url(http://api.biotech.cf/uploads/image-1648902717157.png);
-    display: block;
-    width: 304px;
-    height: 304px;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    max-width: 304px;
-    max-height: 304px;
-}
 
 /* @media screen and (max-height: 655px) {
     .prod-img {
