@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Cookies from 'js-cookie';
 function Login() {
     const { t } = useTranslation();
 
@@ -30,8 +30,9 @@ function Login() {
                 alert('wrong');
             } else {
                 localStorage.setItem('token', JSON.stringify(data));
+                Cookies.set('biotechToken', data.token, { expires: 2 });
                 setLoginStatus(true);
-                navigate("/");
+                navigate('/');
             }
         } catch (error) {
             // console.log(error.response.data[0].meesageKR);
@@ -91,11 +92,9 @@ function Login() {
                                     {' '}
                                     <h2>{t('logedin')}</h2>
                                     {/* <input onClick={() => navigate("/")} defaultValue={t("backhome")} className="submit" /> */}
-                                    <input
-                                        onClick={logout}
-                                        defaultValue={t('logout')}
-                                        className="submit bd"
-                                    />
+                                    <button onClick={logout} className="submit bd">
+                                        {t('logout')}
+                                    </button>
                                     {/* <input onClick={() => navigate("/")} defaultValue={t("backhome")} className="submit" /> */}
                                 </div>
                             ) : (
@@ -112,7 +111,7 @@ function Login() {
                                         placeholder={t('password')}
                                     />
                                     <button
-                                        type='button'
+                                        type="button"
                                         onClick={login}
                                         // defaultValue={t('LoginB')}
                                         className="submit"

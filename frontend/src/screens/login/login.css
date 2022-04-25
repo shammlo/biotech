@@ -16,6 +16,7 @@
     width: 100%;
     height: 100%;
     padding: 15px 25px;
+    max-width: 500px;
 }
 .login .form h2 {
     color: #fff;
@@ -34,7 +35,7 @@
     padding: 0 15px;
     color: rgb(88, 88, 88);
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
 }
 .login .form input:focus {
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -45,7 +46,7 @@
 }
 .login .form button.submit {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255);
     border: none;
     color: #444;
     font-size: 15px;
@@ -54,6 +55,9 @@
     width: 100%;
     height: 40px;
     border-radius: 5px;
+}
+.login .form button.submit.bd {
+    width: 300px;
 }
 
 .login .form button.submit:hover {
