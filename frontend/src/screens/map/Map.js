@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTranslation } from "react-i18next";
 import "./map.css"
-
 import bioTechLogo from '../../images/biotech-footer.svg';
 function Map() {
     const { t } = useTranslation();

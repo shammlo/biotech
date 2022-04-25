@@ -47,7 +47,6 @@ const allCategory = async (req, res) => {
     res.json(error);
   }
 };
-
 // @desc    get category with products by id
 // @route   GET api/category/:id
 // @access  public
